@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <script src="https://kit.fontawesome.com/9a09c3b116.js" crossorigin="anonymous"></script>
+    <style>
+        body{
+    box-sizing: border-box;
+    background-color: #FAFAD2;
+}
+header{
+    background-color: red;
+    height: 40px;
+    width: 100%;
+    position:relative;
+    bottom: 8px;
+
+}
+header i{
+    color:white;
+    position:absolute;
+    right:5px;
+    padding-top: 5px;
+    font-size:30px;
+}
+header p{
+    width: 180px;
+    height:180px;
+    background-color: red;
+    border-radius: 50%;
+    position:absolute;
+    left: 40px;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+}
+header img{
+    width:120px;
+    height:100px;
+    border-radius: 60%;
+}
+.wrapper{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    min-height: 100vh;
+}
+.login{
+    width: 400px;
+    background-color: white;
+    padding: 50px 70px;
+    border: 2px solid black;
+    border-radius: 40px;
+}
+.login input{
+    width: 100%;
+}
+.login input{
+    background-color: transparent;
+    border-radius: 40px;
+    margin: 10px;
+    height: 30px;
+    border: 1px solid black;
+    font-size:20px;
+    padding:10px;
+    color:black;
+}
+.login input::placeholder{
+    color:grey;
+    font-size: 20px;
+    padding: 2px;
+}
+button{
+    cursor: pointer;
+    font-size:25px;
+    border-radius: 40px;
+    padding: 10px 30px;
+    background-color: transparent;
+    color:black;
+    border: 1.5px solid black;
+    margin: 20px;
+}
+.login-signup{
+    display:flex;
+    justify-content: space-between;
+}
+.login [class$="login"]{
+    background-color: red;
+}
+.second-login{
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+    padding-right:0px;
+    margin-top:40px;
+}
+.register-link{
+    display:flex;
+    justify-content: center;
+    font-size: 20px;
+}
+.register-link a{
+    color:blue;
+}
+.register-link a:hover{
+    color:red;
+}
+.register-link a:active{
+    color:blue;
+}
+select{
+    margin-left: 10px;
+    position:relative;
+    left: 10px;
+    top:10px;
+}
+.wrapper h1{
+    text-align: center;
+}
+
+
+    </style>
+</head>
+<body>
+<header>
+    <i class="fa-solid fa-user"></i>
+    <p>
+        <img src="/image/webchicken.jpeg" alt="ảnh 1">
+    </p>
+</header>
+<div class="wrapper">
+    <div class="login">
+        <form th:action="@{/login/home}" method="post">
+            <h1>LOG IN</h1>
+            <div class="input-box"><input name="TKUser" id="TKUser" placeholder="Usename" type="text"></div>
+            <div class="input-box"><input name="PassWork"  id="PassWork" placeholder="PassWork" type="password"></div>
+            <select name="role">
+                <option value="1">USER</option>
+                <option value="2">ADMIN</option>
+            </select>
+            <button class="second-login" type="submit">SIGN IN</button>
+            <div class="register-link">
+                <p>Don't have an account? <a href="#">Register</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
