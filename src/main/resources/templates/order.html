@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order</title>
+</head>
+
+<body>
+<form th:action="@{/NotificationToAdmin}" method="post">
+    <table border="1">
+        <tr>
+            <td>Product Name</td>
+            <td>Category</td>
+            <td>price</td>
+        </tr>
+        <th:block th:each="product : ${listOrderProduct}">
+            <tr>
+                <td th:text="${product.getNameProduct()}">...</td>
+                <td th:text="${product.getCategory()}">...</td>
+                <td th:text="${product.getPrice()}">...</td>
+                <td> <a th:href = "@{'/order/delete'(id= ${product.getId()})}">delete</a> </td>
+
+            </tr>
+        </th:block>
+        <tr>
+            <td>Tổng tiền: </td>
+            <td th:text = "${sumProduct}">.... </td>
+        </tr>
+
+        <td> <a th:href = "@{'/homeUser'}">add Product</a> </td>
+    </table>
+    <button type="submit">comfirm order</button>
+</form>
+</body>
+
+</html>
