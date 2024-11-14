@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/product_page/script.js" defer></script>
+    <link rel="stylesheet" href="/product_page/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/48c0283a22.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="button_select">
+            <button class="button" id="toggleButton"><i class="fa-solid fa-user"></i></button>
+            <div class="select" id="selectLinks">
+                <a href="#">Thông tin khách hàng</a>
+                <a href="#">Đăng xuất</a>
+            </div>
+        </div>
+        <a href="#" class="cart"><i class='bx bx-cart'></i></a>
+    </header>
+    <div class="wrapper_1">
+        <div class='image'>
+            <img src="./image/snapedit_1730596622065.jpeg">
+        </div>
+        <div class="nav">
+            <p><a href="#"><h2>Danh mục sản phẩm</h2></a></p>
+            <p><a href="../combo_page/combo_page.html"><h2>Danh mục combo</h2></a></p>
+            <p><a href="#"><h2>Trạng thái đơn hàng</h2></a></p>
+            <p><a href="#"><h2>Lịch sử đặt hàng</h2></a></p>
+        </div>
+    </div>
+
+
+<br><br>
+    <div class="tuyen">
+        <h1 class="home">This is home</h1>
+
+        <!--thanh tìm kiếm-->
+        <form th:action="@{/searchBox}" method="POST">
+            <input class="search_box" name="searchBox" type="text" placeholder="Tìm kiếm sản phẩm..." required>
+           
+            <!--    <button type="submit" >ll</button>-->
+        </form>
+        <!--thanh tìm kiếm-->
+
+        <!--home các sản phẩm-->
+        <div class ="formCard">
+            <th:block th:each="product : ${ListProduct}">
+                <form th:action="@{/order/product/{id}(id=${product.getId()})}" method="post">
+                    <ul class="products">
+                        <button class="space" type="submit">
+                            <li class="item">
+                                <div class="item_top">
+                                    <a class="item_img" href="@{/order/product/{id}(id=${product.getId()})}">
+                                        <img src="https://st2.depositphotos.com/4029643/7155/i/950/depositphotos_71557231-stock-photo-portrait-of-the-lady-in.jpg" alt="anh 1">
+                                    </a>
+                                </div>
+                                <div class="item_infor">
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><h2>cơm nanban</h2></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="price">35.000đ</p></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="icon"><i class="fas fa-plus-circle"></i></p></a>
+                                </div>
+                            </li>
+                        </button>
+                        <button class="space" type="submit">
+                            <li class="item">
+                                <div class="item_top">
+                                    <a class="item_img" href="@{/order/product/{id}(id=${product.getId()})}">
+                                        <img src="https://st2.depositphotos.com/4029643/7155/i/950/depositphotos_71557231-stock-photo-portrait-of-the-lady-in.jpg" alt="anh 1">
+                                    </a>
+                                </div>
+                                <div class="item_infor">
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><h2>cơm nanban</h2></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="price">35.000đ</p></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="icon"><i class="fas fa-plus-circle"></i></p></a>
+                                </div>
+                            </li>
+                        </button>
+                        <button class="space" type="submit">
+                            <li class="item">
+                                <div class="item_top">
+                                    <a class="item_img" href="@{/order/product/{id}(id=${product.getId()})}">
+                                        <img src="https://st2.depositphotos.com/4029643/7155/i/950/depositphotos_71557231-stock-photo-portrait-of-the-lady-in.jpg" alt="anh 1">
+                                    </a>
+                                </div>
+                                <div class="item_infor">
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><h2>cơm nanban</h2></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="price">35.000đ</p></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="icon"><i class="fas fa-plus-circle"></i></p></a>
+                                </div>
+                            </li>
+                        </button>
+                        <button class="space" type="submit">
+                            <li class="item">
+                                <div class="item_top">
+                                    <a class="item_img" href="@{/order/product/{id}(id=${product.getId()})}">
+                                        <img src="https://st2.depositphotos.com/4029643/7155/i/950/depositphotos_71557231-stock-photo-portrait-of-the-lady-in.jpg" alt="anh 1">
+                                    </a>
+                                </div>
+                                <div class="item_infor">
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><h2>cơm nanban</h2></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="price">35.000đ</p></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="icon"><i class="fas fa-plus-circle"></i></p></a>
+                                </div>
+                            </li>
+                        </button>
+                        <button class="space" type="submit">
+                            <li class="item">
+                                <div class="item_top">
+                                    <a class="item_img" href="@{/order/product/{id}(id=${product.getId()})}">
+                                        <img src="https://st2.depositphotos.com/4029643/7155/i/950/depositphotos_71557231-stock-photo-portrait-of-the-lady-in.jpg" alt="anh 1">
+                                    </a>
+                                </div>
+                                <div class="item_infor">
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><h2>cơm nanban</h2></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="price">35.000đ</p></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="icon"><i class="fas fa-plus-circle"></i></p></a>
+                                </div>
+                            </li>
+                        </button>
+                        <button class="space" type="submit">
+                            <li class="item">
+                                <div class="item_top">
+                                    <a class="item_img" href="@{/order/product/{id}(id=${product.getId()})}">
+                                        <img src="https://st2.depositphotos.com/4029643/7155/i/950/depositphotos_71557231-stock-photo-portrait-of-the-lady-in.jpg" alt="anh 1">
+                                    </a>
+                                </div>
+                                <div class="item_infor">
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><h2>cơm nanban</h2></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="price">35.000đ</p></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="icon"><i class="fas fa-plus-circle"></i></p></a>
+                                </div>
+                            </li>
+                        </button>
+                        <button class="space" type="submit">
+                            <li class="item">
+                                <div class="item_top">
+                                    <a class="item_img" href="@{/order/product/{id}(id=${product.getId()})}">
+                                        <img src="https://st2.depositphotos.com/4029643/7155/i/950/depositphotos_71557231-stock-photo-portrait-of-the-lady-in.jpg" alt="anh 1">
+                                    </a>
+                                </div>
+                                <div class="item_infor">
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><h2>cơm nanban</h2></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="price">35.000đ</p></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="icon"><i class="fas fa-plus-circle"></i></p></a>
+                                </div>
+                            </li>
+                        </button>
+                        <button class="space" type="submit">
+                            <li class="item">
+                                <div class="item_top">
+                                    <a class="item_img" href="@{/order/product/{id}(id=${product.getId()})}">
+                                        <img src="https://st2.depositphotos.com/4029643/7155/i/950/depositphotos_71557231-stock-photo-portrait-of-the-lady-in.jpg" alt="anh 1">
+                                    </a>
+                                </div>
+                                <div class="item_infor">
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><h2>cơm nanban</h2></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="price">35.000đ</p></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="icon"><i class="fas fa-plus-circle"></i></p></a>
+                                </div>
+                            </li>
+                        </button>
+                        <button class="space" type="submit">
+                            <li class="item">
+                                <div class="item_top">
+                                    <a class="item_img" href="@{/order/product/{id}(id=${product.getId()})}">
+                                        <img src="https://st2.depositphotos.com/4029643/7155/i/950/depositphotos_71557231-stock-photo-portrait-of-the-lady-in.jpg" alt="anh 1">
+                                    </a>
+                                </div>
+                                <div class="item_infor">
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><h2>cơm nanban</h2></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="price">35.000đ</p></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="icon"><i class="fas fa-plus-circle"></i><p></a>
+                                </div>
+                            </li>
+                        </button>
+                        <button class="space" type="submit">
+                            <li class="item">
+                                <div class="item_top">
+                                    <a class="item_img" href="@{/order/product/{id}(id=${product.getId()})}">
+                                        <img src="https://st2.depositphotos.com/4029643/7155/i/950/depositphotos_71557231-stock-photo-portrait-of-the-lady-in.jpg" alt="anh 1">
+                                    </a>
+                                </div>
+                                <div class="item_infor">
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><h2>cơm nanban</h2></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="price">35.000đ</p></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="icon"><i class="fas fa-plus-circle"></i><p></a>
+                                </div>
+                            </li>
+                        </button>
+                        <button class="space" type="submit">
+                            <li class="item">
+                                <div class="item_top">
+                                    <a class="item_img" href="@{/order/product/{id}(id=${product.getId()})}">
+                                        <img src="https://st2.depositphotos.com/4029643/7155/i/950/depositphotos_71557231-stock-photo-portrait-of-the-lady-in.jpg" alt="anh 1">
+                                    </a>
+                                </div>
+                                <div class="item_infor">
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><h2>cơm nanban</h2></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="price">35.000đ</p></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="icon"><i class="fas fa-plus-circle"></i></p></a>
+                                </div>
+                            </li>
+                        </button>
+                        <button class="space" type="submit">
+                            <li class="item">
+                                <div class="item_top">
+                                    <a class="item_img" href="@{/order/product/{id}(id=${product.getId()})}">
+                                        <img src="https://st2.depositphotos.com/4029643/7155/i/950/depositphotos_71557231-stock-photo-portrait-of-the-lady-in.jpg" alt="anh 1">
+                                    </a>
+                                </div>
+                                <div class="item_infor">
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><h2>cơm nanban</h2></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="price">35.000đ</p></a>
+                                    <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="icon"><i class="fas fa-plus-circle"></i></p></a>
+                                </div>
+                            </li>
+                        </button>
+                    </ul>
+                </form>
+            </th:block>
+        </div>
+    </div>
+</body>
+</html>
