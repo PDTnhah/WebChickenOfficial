@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kong Fuong Chicken</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href ="https://fonts.googleapis.com/css2" rel ="stylesheet" >
+    <link rel ="stylesheet" href="style.css">
+    <link rel ="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script >
+        function toggleDropdown() {
+    const dropdownMenu = document.getElementById("dropdownMenu");
+    const dropdownButton = document.getElementById("dropdownButton");
+
+    // Đổi trạng thái hiển thị của menu
+    dropdownMenu.style.display = (dropdownMenu.style.display === "block") ? "none" : "block";
+
+    // Thêm/xóa lớp 'active' để thay đổi hướng mũi tên
+    dropdownButton.classList.toggle("active");
+}
+
+function selectOption(option) {
+    const dropdownButton = document.getElementById("dropdownButton");
+    dropdownButton.querySelector("span").textContent = option;
+    document.getElementById("dropdownMenu").style.display = "none";
+    
+    // Xóa lớp 'active' để mũi tên trở về hướng xuống sau khi chọn
+    dropdownButton.classList.remove("active");
+}
+
+window.onclick = function(event) {
+    if (!event.target.matches('#dropdownButton') && !event.target.matches('#dropdownButton span')) {
+        const dropdowns = document.getElementsByClassName("dropdown-content");
+        const dropdownButton = document.getElementById("dropdownButton");
+        
+        for (let i = 0; i < dropdowns.length; i++) {
+            const openDropdown = dropdowns[i];
+            if (openDropdown.style.display === "block") {
+                openDropdown.style.display = "none";
+            }
+        }
+
+        // Xóa lớp 'active' khi click ra ngoài để mũi tên trở về hướng xuống
+        dropdownButton.classList.remove("active");
+    }
+}
+    </script>
+</head>
+<body>
+    <div class="Title_Box">
+        <a>Xác nhận thông tin đơn hàng</a>
+    </div>
+    <div class="Name">
+        <input type="text" placeholder="Họ và tên">
+    </div>
+    <div class="Phone_Number">
+        <input type="text" placeholder="Số điện thoại">
+    </div>    
+    <div class="Address">
+        <input type="text" placeholder="Địa chỉ">
+    </div>
+    <div class="dropdown">
+        <button onclick="toggleDropdown()" id="dropdownButton"><span>Đơn vị vận chuyển</span></button>
+        <div class="dropdown-content" id="dropdownMenu">
+            <a onclick="selectOption('GrabFood')">GrabFood</a>
+            <a onclick="selectOption('ShoppeFood')">ShoppeFood</a>
+            <a onclick="selectOption('BeFood')">BeFood</a>
+        </div>
+    </div>
+    <div class="Message">
+        <input type="text" placeholder="Lời nhắn cho tài xế">
+    </div>
+    <div class="Confirm">
+        <a href="trangthaidon.html">Xác nhận</a></div>
+</body>
+</html>

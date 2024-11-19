@@ -1,0 +1,48 @@
+
+Nguyễn Dương
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm sản phẩm</title>
+    <link rel="stylesheet" href="test.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Thêm sản phẩm mới</h2>
+        <form action="#" method="post">
+            <label for="product-name">Tên sản phẩm:</label>
+            <input type="text" id="product-name" name="product-name" required>
+            
+
+            
+            <label for="category">Danh mục:</label>
+            <select id="category" name="category">
+                <option value="type1">Gà rán - Gà quay</option>
+                <option value="type2">Burger - Cơm - Mì Ý</option>
+                <option value="type3">Thức ăn nhẹ</option>
+                <option value="type4">Đồ uống & Tráng miệng</option>
+            </select>
+            
+            <label for="price">Giá:</label>
+            <input type="number" id="price" name="price" required>
+            
+
+            
+            <label for="description">Mô tả:</label>
+            <textarea id="description" name="description" rows="4"></textarea>
+            
+            <label for="image">Hình ảnh:</label>
+            <input type="file" id="image" name="image">
+            
+
+            
+            <div class="button-container">
+                <button type="submit" class="save-btn">Lưu</button>
+                <button type="reset" class="cancel-btn">Hủy</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gi gi do</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        * {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+    height:100vh;
+    overflow: scroll;
+    
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #333;
+}
+
+input[type="text"],
+input[type="file"],
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.save-btn,.cancel-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    width: 48%;
+}
+
+.save-btn {
+    background-color: #4CAF50;
+}
+
+.cancel-btn {
+    background-color: #f44336;
+}
+
+.save-btn:hover {
+    background-color: #45a049;
+}
+
+.cancel-btn:hover {
+    background-color: #e43b2c;
+}
+        img{
+            width: 400px;
+            height: 300px;
+        }
+
+    </style>
+    <script>
+        function chooseFile(fileInput){
+    if(fileInput.files && fileInput.files[0]){
+        let reader = new FileReader();
+        
+        reader.onload = function(e){
+            $('#image').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(fileInput.files[0]); // Sửa file[0] thành files[0]
+    }
+}
+
+        // Lấy đối tượng button và div chứa các liên kết
+        const button = document.getElementById('toggleButton');
+        const selectLinks = document.getElementById('selectLinks');
+
+        // Thêm sự kiện click cho nút
+        button.addEventListener('click', function() {
+            // Kiểm tra trạng thái hiển thị của các liên kết
+            if (selectLinks.style.display === 'block') {
+                selectLinks.style.display = 'none'; // Ẩn liên kết
+            } else {
+                selectLinks.style.display = 'block'; // Hiển thị liên kết
+            }
+        });
+    
+
+
+    </script>
+</head>
+<body>
+   
+   <div class="form-container">
+        <h1>Thông tin cơ bản</h1>
+        <form th:action="@{/searchBox}" method="POST">
+            <label for="product-name">Tên sản phẩm:</label>
+            <input type="text" id="product-name" name="product-name" required>
+            
+
+            
+            <label for="category">Danh mục:</label>
+            <select id="category" name="category">
+                <option value="type1">Gà rán - Gà quay</option>
+                <option value="type2">Burger - Cơm - Mì Ý</option>
+                <option value="type3">Thức ăn nhẹ</option>
+                <option value="type4">Đồ uống & Tráng miệng</option>
+            </select>
+            
+            <label for="price">Giá:</label>
+            <input type="text" id="price" name="price" required>
+            
+
+            
+            <label for="description">Mô tả:</label>
+            <textarea id="description" name="description" rows="4"></textarea>
+            
+            
+            <img src="" alt="" id="image"> <br>
+            <input type="file" name="" id="imageFile" onchange="chooseFile(this)"
+                accept="image/gif, image/jpeg, image/png"><br>
+
+            
+            <div class="button-container">
+                <button type="reset" class="cancel-btn">Hủy</button>
+                <button type="submit" class="save-btn">Lưu</button>
+            </div>
+             
+        </form>
+   </div>
+</body>
+</html>

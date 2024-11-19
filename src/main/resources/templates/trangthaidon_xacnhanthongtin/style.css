@@ -1,0 +1,269 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    background: #f8f9f0;
+    font-family: "Poppins";
+}
+
+.Bar{
+    width: 1515px;
+    height: 30px;
+    background: #E4002B;
+} 
+.Post{
+    
+    width: 270px;
+    height: 720px;
+    background: #022135;
+    
+}
+.Shopping_Cart{
+    font-size: 28px;
+    position:absolute;
+    right: 70px;
+    top: 5px;
+    color: white;
+}
+
+.User_Icon{
+    font-size: 28px;
+    position:absolute;
+    right: 10px;
+    top: 5px;
+    color: white;
+}
+.Navigation {
+    color: white;
+    text-align: left;
+    font-size: 15px;
+    padding: 20px;
+    position:absolute;
+    top : 150px;
+}
+
+.Navigation h2{
+    margin-top: 50px;
+}
+.Navigation a{
+    text-decoration: none;
+    color: white;
+}
+.Navigation a:hover{
+    background-color: #f8f9f0;
+    color:#E4002B;
+    border-radius: 10px;
+    padding: 20px;
+}
+.Circle {
+	width: 110px;
+	height: 100px;
+	background: #E4002B;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+    position:absolute;
+    left: 85px;
+    top:0px;
+}
+.Kong_Fuong_Chicken img{
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    left: 10px;
+}
+.Shopping_Cart, .User_Icon{
+    cursor: pointer;
+    background: unset; 
+    border: unset;
+}
+.Status {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+    left: 300px;
+    bottom: 500px;
+}
+
+/* Cấu hình khối từng bước */
+.step {
+    text-align: center;
+    max-width: 120px;
+}
+
+/* Đặt kích thước và căn chỉnh icon */
+.step img {
+    width: 50px;
+    height: auto;
+    margin-bottom: 10px;
+}
+/* Thiết kế thời gian */
+.time {
+    font-size: 14px;
+    color: #333;
+}
+
+.Title_Box{
+    position:relative;
+    top: 50px;
+    height: 100px;
+    width: 500px;
+    margin: 0px auto;
+    background: #E4002B;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+}
+.Title_Box a{
+    position: relative;  
+    top: 30px;
+    color:#f8f9f0
+    
+}
+.Confirm{
+    height: 50px;
+    width: 150px;
+    text-align: center;
+    font-size:25px;
+    border-radius: 25px;
+    background: #E4002B;
+    position:absolute;
+    top:650px;
+    right:0px;
+}
+.Confirm a{
+    position: relative;
+    top: 10px;
+    color: #f8f9f0;
+}
+input{
+    height: 50px;
+    width: 600px;
+    background: #E4002B;
+    color: white;
+    font-size:16px;
+}
+input::placeholder {
+    color: white; 
+    opacity: 1; 
+}
+h1{
+    position:absolute;
+    left:50px;
+}
+.Name{
+    height: 50px;
+    width: 600px;
+    position: relative;
+    top:50px;
+    display:block;
+}
+.Name input{
+    height: 50px;
+    width: 600px;
+    position: relative;
+    margin: 50px 100px;
+}
+.Phone_Number{
+    height: 50px;
+    width: 600px;
+    position: relative;
+    top:50px;
+    left: 700px;
+    display:block
+}
+.Phone_Number input{
+    height: 50px;
+    width: 600px;
+    position: relative;
+    margin: 50px 100px;
+    bottom:50px;
+}
+.Address{
+    height: 50px;
+    width: 1300px;
+    position: relative;
+    top: 50px;
+}
+.Address input{
+    height: 50px;
+    width: 1300px;
+    position: relative;
+    margin: 50px 100px;
+}
+.Message{
+    height: 50px;
+    width: 600px;
+    position: relative;
+    top:50px;
+    display:block;
+}
+.Message input{
+    height: 50px;
+    width: 600px;
+    position: relative;
+    margin: 50px 100px;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin: 50px 100px;
+    top: 100px;
+}
+
+.dropdown button {
+    background-color: #E4002B;
+    color: white;
+    padding: 15px 0px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 600px; /* Cố định chiều rộng */
+    text-align: left; /* Căn trái cho nội dung */
+    position: relative;
+}
+
+/* Mũi tên hướng xuống mặc định */
+.dropdown button::before {
+    content: '▼';
+    position: absolute;
+    right: 10px;
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+/* Khi mở dropdown, mũi tên sẽ hướng lên */
+.dropdown button.active::before {
+    content: '▲'; /* Mũi tên hướng lên */
+}
+
+.dropdown button span {
+    margin-left: 0px; /* Đẩy nội dung qua bên phải để không chèn vào mũi tên */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #E4002B;
+    width: 600px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 0px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+
