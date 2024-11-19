@@ -15,4 +15,8 @@ public class LoginService {
         }
         return null;
     }
+
+    public String image() {
+        return loginRepository.loadImage();
+    }
 }

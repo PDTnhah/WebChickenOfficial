@@ -2,12 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <script src="script.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="/jscrip.js"></script>
-    <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/48c0283a22.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -98,6 +96,7 @@ header i{
     background-color:#f8f9f0;
     color:red;
     border-radius: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 
 }
 .nav a:active{
@@ -242,6 +241,9 @@ li{
 
 
     </style>
+    <ts>
+
+    </ts>
     <script>
         function chooseFile(fileInput){
     if(fileInput.files && fileInput.files[0]){
@@ -275,30 +277,18 @@ li{
         <button class="button" id="button"><i class="fa-solid fa-user"></i></button>
         <div class="select" id="selectLinks">
             <a href="#">Thông tin khách hàng</a>
-            <a href="#">Đăng xuất</a>
+            <a href="/login/home">Đăng xuất</a>
         </div>
     </div>
     <a href="#" class="cart"><i class='bx bx-cart'></i></a>
 </header>
-<!--<header>-->
-<!--&lt;!&ndash;    <a href="#"><i class="fa-solid fa-user"></i></a>&ndash;&gt;-->
-<!--&lt;!&ndash;    <a href="#"><i class='bx bx-cart'></i></a>&ndash;&gt;-->
-<!--        <div class="button_select">-->
-<!--            <button class="button"  onclick="check()">chạy đê</button>-->
-<!--            <div class="select">-->
-<!--                <a href="#">link 1</a>-->
-<!--                <a href="#">link 2</a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <a href="#" class="cart"><i class='bx bx-cart'></i></a>-->
-<!--</header>-->
 <div class="wrapper_1">
     <div class="item_img">
-        <img src="./image/snapedit_1730596622065.jpeg">
+        <img th:src="'data:image/png;base64,' + ${Image}" alt=" Image" /><br>
     </div>
     <div class="nav">
         <p><a href="#"><h2>Danh mục sản phẩm</h2></a></p>
-        <p><a href="../combo_page/combo_page.html"><h2>Danh mục combo</h2></a></p>
+        <p><a href="/UserHomeComBo"><h2>Danh mục combo</h2></a></p>
         <p><a href="#"><h2>Trạng thái đơn hàng</h2></a></p>
         <p><a href="#"><h2>Lịch sử đặt hàng</h2></a></p>
     </div>
@@ -307,7 +297,7 @@ li{
 
 <br><br>
 <div class="tuyen">
-    <h1 class="home">This is home</h1>
+    <h1 class="home">Kong Fuong Chicken</h1>
 
     <!--thanh tìm kiếm-->
     <form th:action="@{/searchBox}" method="POST">

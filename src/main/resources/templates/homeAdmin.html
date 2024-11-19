@@ -1,10 +1,332 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>Home ADMIN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/48c0283a22.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        *{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "time New Roman";
+}
+.tuyen {
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border: 1px solid black;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+    background-color: #f8f9f0;
+}
+.space{
+    margin:10px;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+
+}
+.formCard{
+    display:flex;
+    flex-direction: row;
+}
+.home{
+   display: block;
+   margin-top: 0;
+}
+.search_box{
+    margin-bottom: 50px;
+    width: 600px;
+    height: 60px;
+    border-radius: 15px;
+    font-size: 25px;
+    padding: 5px 100px 5px 20px;
+}
+header{
+    background-color: #E4002B;
+    height: 40px;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    display: block;
+}
+header i{
+    color: white;
+    padding: 5px;
+    font-size: 30px;
+    padding-left: 20px;
+    float: right;
+}
+.wrapper_1{
+    display:flex;
+    height: 100vh;
+    align-items: center;
+    flex-direction: column;
+    width: 300px;
+    background-color: #1A1A19;
+    float: left;
+    position: fixed;
+    top: 40px;
+}
+.wrapper_1 img{
+    width: 200px;
+    height: 180px;
+    border-radius: 60%;
+}
+.nav h2{
+    margin-top: 50px;
+}
+.nav a{
+    text-decoration: none;
+    color: white;
+}
+.nav a:hover{
+    background-color:#f8f9f0;
+    color:red;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+}
+.nav a:active{
+    background-color: #1A1A19;
+    color:white;
+    border-radius: 10px;
+    padding: 20px;
+}
+.item_infor img{
+    width: 280px;
+    height: 200px;
+    margin: 10px;
+}
+.item_infor h2,i{
+    display: inline;
+}
+
+.formCard{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+
+}
+.space:hover{
+    border: 2px solid red;
+    transform: scale(1.1);
+}
+.space{
+    padding: 10px;
+
+}
+button{
+    transition: 0.3s ease;
+}
+form{
+    margin-top: 20px;;
+}
+.formCard{
+    overflow: scroll;
+    margin-left: 290px;
+    overflow-x: hidden;
+}
+.tuyen h1,input{
+    margin-left: 300px;
+}
+li{
+    list-style-type: none;
+    padding: 10px;
+}
+.item_infor a{
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.item_infor a h2{
+    text-align: start;
+    padding-left: 15px;
+    color: rgba(0, 0, 0, 0.803);
+}
+.price{
+    margin-top: 15px;
+    text-align: start;
+    padding-left: 15px;
+    color: rgba(0, 0, 0, 0.455);
+}
+.icon{
+    text-align: end;
+}
+.icon i{
+    color: red;
+    font-size: 40px;
+}
+.upload_img{
+    margin-top: 50px;
+    float: right;
+}
+.additem{
+    margin-bottom: 50px;
+    width: 400px;
+    height: 60px;
+    border-radius: 15px;
+    font-size: 25px;
+    padding: 5px 100px 5px 20px;
+    margin-left: 10px;
+}
+.additem a{
+    margin-left: 67px;
+    text-decoration: none;
+    transition: 0.3s ease;
+    color: black;
+}
+.additem:hover{
+    transform: scale(1.07);
+    border-color: red;
+}
+.nav a{
+    padding: 20px;
+}
+.select a{
+    display: block;
+}
+
+.select {
+    display: none;
+    background-color: white;
+    border: 2px solid black;
+    padding: 5px;
+    position: fixed;
+    top: 40px;
+    right: 0px;
+}
+.button_select{
+    position: fixed;
+    right: 5px;
+}
+.button{
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    position: fixed;
+    right: 5px;
+    cursor: pointer;
+}
+.select a{
+    text-decoration: none;
+    cursor: pointer;
+    color:black;
+}
+.button:active{
+    opacity: 0.5;
+}
+.select a:hover{
+    background-color: rgba(128, 128, 128, 0.404);
+}
+.select a{
+    font-size: 17px;
+}
+.cart{
+    position: fixed;
+    right: 70px;
+}
+
+
+    </style>
+    <script>
+        function chooseFile(fileInput){
+    if(fileInput.files && fileInput.files[0]){
+        let reader = new FileReader();
+
+        reader.onload = function(e){
+            $('#image').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(fileInput.files[0]); // Sửa file[0] thành files[0]
+    }
+}
+
+        document.addEventListener('DOMContentLoaded', function() {
+        const button = document.getElementById('button')
+        const selectLinks = document.getElementById('selectLinks');
+
+        button.addEventListener('click', function() {
+            if (selectLinks.style.display === 'block') {
+                selectLinks.style.display = 'none';
+            } else {
+                selectLinks.style.display = 'block';
+            }
+        });
+    });
+    </script>
 </head>
+
 <body>
-    <p> this is admin's home</p>
+<header>
+    <div class="button_select">
+        <button class="button" id="button"><i class="fa-solid fa-user"></i></button>
+        <div class="select" id="selectLinks">
+            <a href="#">Thông tin khách hàng</a>
+            <a href="/login/home">Đăng xuất</a>
+        </div>
+    </div>
+    <a href="#" class="cart"><i class='bx bx-cart'></i></a>
+</header>
+<div class="wrapper_1">
+    <div class="item_img">
+        <img th:src="'data:image/png;base64,' + ${Image}" alt=" Image" /><br>
+    </div>
+    <div class="nav">
+        <p><a href="#"><h2>Danh mục sản phẩm</h2></a></p>
+        <p><a href="/AdminHomeComBo"><h2>Danh mục combo</h2></a></p>
+        <p><a href="#"><h2>Doanh Thu</h2></a></p>
+        <p><a href="#"><h2>Số Lượng Đã Bán</h2></a></p>
+    </div>
+</div>
+
+
+<br><br>
+<div class="tuyen">
+    <h1 class="home">Kong Fuong Chicken</h1>
+
+    <!--thanh tìm kiếm-->
+    <form th:action="@{/searchBox}" method="POST">
+        <input class="search_box" name="searchBox" type="text" placeholder="Tìm kiếm sản phẩm..." required>
+        <button type="submit" class="additem"><a href="upload_image.html" target="_blank">Thêm sản phẩm</a></button>
+
+        <!--    <button type="submit" >ll</button>-->
+    </form>
+    <!--thanh tìm kiếm-->
+
+    <!--home các sản phẩm-->
+    <ul class="products">
+        <div class ="formCard">
+            <th:block th:each="product : ${ListProduct}">
+                <form th:action="@{/order/product/{id}(id=${product.getId()})}" method="post">
+                    <button class="space" type="submit">
+                        <li class="item">
+                            <div class="item_infor">
+                                <img th:src="'data:image/png;base64,' + ${product.getImage}" alt="Product Image" /><br>
+                                <h2 th:text="${product.getNameProduct()}" name="nameProduct">Tên sản phẩm</h2> <br>
+                                <i class="fa-solid fa-dollar-sign"></i> <h2 th:text="${product.getPrice()}" name="price">100000</h2>
+                                <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="icon"><i class="fas fa-plus-circle"></i></p></a>
+                            </div>
+                        </li>
+                    </button>
+
+                </form>
+
+            </th:block>
+        </div>
+    </ul>
+</div>
 </body>
+
 </html>

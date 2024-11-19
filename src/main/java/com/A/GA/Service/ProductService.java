@@ -51,4 +51,10 @@ public class ProductService {
     public double  sumProduct() {
         return productRepository.sumProduct();
     }
+
+
+    // ảnh công phượng
+    public String getImage() {
+        return productRepository.loadImage();
+    }
 }

@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
     <script src="https://kit.fontawesome.com/9a09c3b116.js" crossorigin="anonymous"></script>
     <style>
         body{
@@ -57,7 +56,7 @@ header img{
     border-radius: 40px;
 }
 .login input{
-    width: 100%;
+    width: 400px;
 }
 .login input{
     background-color: transparent;
@@ -73,6 +72,22 @@ header img{
     color:grey;
     font-size: 20px;
     padding: 2px;
+}
+.login form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+.header{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.register-link{
+    display:flex;
+    justify-content: center;
+    width: 100%;
 }
 button{
     cursor: pointer;
@@ -129,16 +144,19 @@ select{
 <header>
     <i class="fa-solid fa-user"></i>
     <p>
-        <img src="/image/webchicken.jpeg" alt="ảnh 1">
+<!--        <img src="/image/webchicken.jpeg" alt="ảnh 1">-->
+        <img th:src="'data:image/png;base64,' + ${Image}" alt=" Image" /><br>
+
     </p>
 </header>
 <div class="wrapper">
     <div class="login">
-        <form th:action="@{/login/home}" method="post">
+        <form id="loginForm">
             <h1>LOG IN</h1>
-            <div class="input-box"><input name="TKUser" id="TKUser" placeholder="Usename" type="text"></div>
-            <div class="input-box"><input name="PassWork"  id="PassWork" placeholder="PassWork" type="password"></div>
-            <select name="role">
+            <div class="input-box"><input name="TKUser" id="TKUser" placeholder="Username" type="text"></div>
+            <div class="input-box"><input name="PassWork" id="PassWork" placeholder="Password" type="password"></div>
+            <p id="errorMessage" style="color: red; text-align: center;"></p> <!-- Nơi hiển thị lỗi -->
+            <select name="role" id="role">
                 <option value="1">USER</option>
                 <option value="2">ADMIN</option>
             </select>
@@ -146,8 +164,50 @@ select{
             <div class="register-link">
                 <p>Don't have an account? <a href="#">Register</a></p>
             </div>
+
         </form>
     </div>
 </div>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Ngăn chặn form gửi mặc định
+
+        // Lấy thông tin đăng nhập từ form
+        const username = document.getElementById('TKUser').value;
+        const password = document.getElementById('PassWork').value;
+        const role = document.getElementById('role').value;
+
+        // Sử dụng fetch để gửi yêu cầu POST đến server
+        fetch('/login/home', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `TKUser=${username}&PassWork=${password}&role=${role}`
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.text(); // Nhận thông báo thành công từ server
+            } else {
+                return response.text().then(errorMessage => {
+                    throw new Error(errorMessage); // Tạo lỗi với thông báo từ server
+                });
+            }
+        })
+        .then(result => {
+            // Điều hướng đến trang tương ứng dựa trên vai trò
+            if (result === "user") {
+                window.location.href = '/homeUser';
+            } else if (result === "admin") {
+                window.location.href = '/homeAdmin';
+            }
+        })
+        .catch(error => {
+            // Hiển thị thông báo lỗi nếu đăng nhập thất bại
+            document.getElementById('errorMessage').textContent = error.message;
+        });
+    });
+</script>
 </body>
 </html>

@@ -77,40 +77,7 @@
             }
 
 
-    //   tải ảnh từ thiết bị của máy tính ( cần nâng cấp lên là người dùng có thể nhập khi nhấn 1 nút từ màn hình)
-//    public static BufferedImage loadImage(File fileImage) {
-//        BufferedImage image = null;
-//        try {
-//            // Đọc ảnh từ đường dẫn được cung cấp
-//            image = ImageIO.read(fileImage);
-//            System.out.println("Đã tải ảnh thành công từ: ");
-//        } catch (IOException e) {
-//            System.out.println("Không thể đọc ảnh: " + e.getMessage());
-//        }
-//
-//        return image;
-//    }
-
-    }
-
-
-        //    tạo ra các sản phẩm mẫu
-//        static {
-////            arrayImage(folderImage);
-////            String imageBase64 = convertImageToBase64(loadImage());
-////            tableProduct.add( new ProductChicken(0,"Burger Zinger" , "chiên" , 1000,tableImage.get(0)));
-////            tableProduct.add( new ProductChicken(1,"Burger Tôm" , "chiên" , 2000,tableImage.get(1)));
-////            tableProduct.add( new ProductChicken(2,"Burger Gà Quay Flava" , "hấp" , 2000,tableImage.get(2)));
-////            tableProduct.add( new ProductChicken(3,"Cơm Phi-lê Gà Quay" , "hấp" , 2000,tableImage.get(3)));
-////            tableProduct.add( new ProductChicken(4,"Com Gà Teriyaki" , "hấp" , 2000,tableImage.get(4)));
-////            tableProduct.add( new ProductChicken(5,"Mì Ý Gà Viên" , "hấp" , 2000,tableImage.get(5)));
-//        }
-
-         // bảng các sản phẩm mà người dùng đã chọn
-//        static {
-////             String imageBase64 = convertImageToBase64(loadImage());
-//            tableOrder.add(new ProductChicken(1,"gà chiên", "chiên",1000,tableImage.get(1)));
-//        }
+        }
     // tìm kiếm sản phẩm bằng id
         public ProductChicken getByIdProduct(int id) {
             for (ProductChicken productChicken : tableProduct){
@@ -169,6 +136,26 @@
                 sum = sum +productChicken.getPrice();
             }
             return sum;
+        }
+
+
+
+        //   tải ảnh từ thiết bị của máy tính ( cần nâng cấp lên là người dùng có thể nhập khi nhấn 1 nút từ màn hình)
+        public static String loadImage() {
+            String nameFile = "D:\\WebChickenChaun\\src\\main\\resources\\templates\\imageLogin\\webchicken.jpeg";
+            File fileImage = new File(nameFile);
+            BufferedImage image = null;
+            String base64Image = "";
+            try {
+                // Đọc ảnh từ đường dẫn được cung cấp
+                image = ImageIO.read(fileImage);
+                base64Image = convertImageToBase64(image);
+                System.out.println("Đã tải ảnh thành công từ: ");
+            } catch (IOException e) {
+                System.out.println("Không thể đọc ảnh: " + e.getMessage());
+            }
+
+            return base64Image;
         }
     }
 
