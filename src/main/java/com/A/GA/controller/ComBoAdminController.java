@@ -32,9 +32,10 @@ public class ComBoAdminController {
     public RedirectView addComBo(@RequestParam ("nameComBo") String nameComBo,
                                  @RequestParam("price") int price,
                                  @RequestParam ("describe")String describe,
-                                 @RequestParam ("image") String image,
+                                 @RequestParam ("compressedImage") String image1,
                                  @RequestParam ("category") String category
                                  ){
+        String image = image1.split(",")[2];
         comBoAdminService.addComBo(nameComBo,price,category,describe,image);
         System.out.println(nameComBo);
         System.out.println(price);

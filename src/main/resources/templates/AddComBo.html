@@ -116,8 +116,6 @@ textarea {
                     // Nén ảnh dưới dạng Base64 (tùy chỉnh chất lượng: 0.7 cho chất lượng 70%)
                     const compressedImage = canvas.toDataURL('image/jpeg', 0.7);
 
-                                console.log("Compressed Image Base64: ", compressedImage);
-
                     // Trả ảnh nén qua callback
                     callback(compressedImage);
                 };
@@ -172,7 +170,7 @@ textarea {
         <input type="file" name="image" id="imageFile" onchange="chooseFile(this)"
                accept="image/gif, image/jpeg, image/png" required><br>
 
-
+        <input type="hidden" name="compressedImage" id="compressedImage">
         <div class="button-container">
             <button type="reset" class="cancel-btn">Cancel</button>
             <button type="submit" class="save-btn">Save</button>
