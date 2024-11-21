@@ -210,14 +210,67 @@ li{
 .nav a{
     padding: 20px;
 }
+.select a{
+    display: block;
+}
+
+.select {
+    display: none;
+    background-color: white;
+    border: 2px solid black;
+    padding: 5px;
+    position: fixed;
+    top: 40px;
+    right: 0px;
+}
+.button_select{
+    position: fixed;
+    right: 5px;
+}
+.button{
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    position: fixed;
+    right: 5px;
+    cursor: pointer;
+}
+.select a{
+    text-decoration: none;
+    cursor: pointer;
+    color:black;
+}
+.button:active{
+    opacity: 0.5;
+}
+.select a:hover{
+    background-color: rgba(128, 128, 128, 0.404);
+}
+.select a{
+    font-size: 17px;
+}
+.cart{
+    position: fixed;
+    right: 70px;
+}
 
     </style>
 </head>
 
 <body>
+<!--<header>-->
+<!--    <a href="#"><i class="fa-solid fa-user"></i></a>-->
+<!--    <a href="#"><i class='bx bx-cart'></i></a>-->
+<!--</header>-->
 <header>
-    <a href="#"><i class="fa-solid fa-user"></i></a>
-    <a href="#"><i class='bx bx-cart'></i></a>
+    <div class="button_select">
+        <button class="button" id="button"><i class="fa-solid fa-user"></i></button>
+        <div class="select" id="selectLinks">
+            <a href="#">Thông tin khách hàng</a>
+            <a href="/login/home">Đăng xuất</a>
+        </div>
+    </div>
+    <a href="#" class="cart"><i class='bx bx-cart'></i></a>
 </header>
 <div class="wrapper_1">
     <div class='image'>
@@ -318,6 +371,19 @@ li{
     const selectedProducts = document.querySelectorAll(`.${category}`);
     selectedProducts.forEach(product => {
         product.style.display = 'block';
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const button = document.getElementById('button')
+        const selectLinks = document.getElementById('selectLinks');
+
+        button.addEventListener('click', function() {
+            if (selectLinks.style.display === 'block') {
+                selectLinks.style.display = 'none';
+            } else {
+                selectLinks.style.display = 'block';
+            }
+        });
     });
 }
 </script>

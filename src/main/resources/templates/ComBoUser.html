@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
@@ -42,7 +43,7 @@
 }
 .formCard{
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 .home{
    display: block;
@@ -112,6 +113,12 @@ header i{
     margin-bottom: 10px;
 }
 .products{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.products .all_combo{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -191,6 +198,7 @@ li{
 }
 .tab_button{
     font-size: 30px;
+    height: 7vh;
     margin: 10px;
     padding: 5px;
     border-radius: 15px;
@@ -246,93 +254,93 @@ li{
 
     <!--home các sản phẩm-->
     <div class="formCard">
-            <div class="select_list_item">
-                <button type="submit" class="tab_button" onclick="showTab('combo_nhom')">COMBO NHÓM</button>
-                <button type="submit" class="tab_button" onclick="showTab('combo_1_nguoi')">COMBO 1 NGƯỜI</button>
-                <button type="submit" class="tab_button" onclick="showTab('combo_mon_moi')">COMBO MÓN MỚI</button>
+        <div class="select_list_item">
+            <button type="submit" class="tab_button" onclick="showTab('combo_nhom')">COMBO NHÓM</button>
+            <button type="submit" class="tab_button" onclick="showTab('combo_1_nguoi')">COMBO 1 NGƯỜI</button>
+            <button type="submit" class="tab_button" onclick="showTab('combo_mon_moi')">COMBO MÓN MỚI</button>
+        </div>
+        <form>
+            <div class="products">
+                <th:block th:each="compo: ${allComBo}" class = "all_combo">
+
+                    <button th:if="${compo.category == 'group'}" class="space combo_nhom" type="submit">
+                        <div class="item">
+                            <div class="item_top">
+                                <div class="item_img" >
+                                    <img th:src="'data:image/png;base64,' + ${compo.getImage}" alt=" Image" /><br>
+                                </div>
+                            </div>
+                            <div class="item_infor">
+                                <h2 th:text ="${compo.getNameComBo()}">cơm nanban</h2>
+                                <p th:text ="${compo.getDescribe}">Mô Tả</p>
+                                <p th:text ="${compo.getPrice()}" class="price">
+                                    35.000đ</p>
+                                <p class="icon"><i
+                                        class="fas fa-plus-circle"></i></p>
+                            </div>
+                        </div>
+                    </button>
+                    <div th:if="${compo.category == 'one'}">
+                        <button class="space combo_1_nguoi" type="submit">
+                            <div class="item">
+                                <div class="item_top">
+                                    <div class="item_img" >
+                                        <img th:src="'data:image/png;base64,' + ${compo.getImage}" alt=" Image" /><br>
+                                    </div>
+                                </div>
+                                <div class="item_infor">
+                                    <h2 th:text ="${compo.getNameComBo()}">cơm nanban</h2>
+                                    <p th:text ="${compo.getDescribe}">Mô Tả</p>
+                                    <p th:text ="${compo.getPrice()}" class="price">
+                                        35.000đ</p>
+                                    <p class="icon"><i
+                                            class="fas fa-plus-circle"></i></p>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!--                    Com Bô một người-->
+                    <div th:if="${compo.category == 'newMeal'}">
+                        <button class="space combo_mon_moi" type="submit">
+                            <div class="item">
+                                <div class="item_top">
+                                    <div class="item_img" >
+                                        <img th:src="'data:image/png;base64,' + ${compo.getImage}" alt=" Image" /><br>
+                                    </div>
+                                </div>
+                                <div class="item_infor">
+                                    <h2 th:text ="${compo.getNameComBo()}">cơm nanban</h2>
+                                    <p th:text ="${compo.getDescribe}">Mô Tả</p>
+                                    <p th:text = "${compo.getPrice()}" class="price">
+                                        35.000đ</p>
+                                    <p class="icon"><i
+                                            class="fas fa-plus-circle"></i></p>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+
+                </th:block>
             </div>
-            <form>
-                <div class="products">
-                    <th:block th:each="compo: ${allComBo}">
-                            <button th:if="${compo.category == 'group'}" class="space combo_nhom" type="submit">
-                                 <div class="item">
-                                    <div class="item_top">
-                                        <div class="item_img" >
-                                            <img th:src="'data:image/png;base64,' + ${compo.getImage}" alt=" Image" /><br>
-                                        </div>
-                                    </div>
-                                    <div class="item_infor">
-                                        <h2 th:text ="${compo.getNameComBo()}">cơm nanban</h2>
-                                        <p th:text ="${compo.getDescribe}">Mô Tả</p>
-                                        <p th:text ="${compo.getPrice()}" class="price">
-                                            35.000đ</p>
-                                       <p class="icon"><i
-                                                class="fas fa-plus-circle"></i></p>
-                                    </div>
-                                </div>
-                            </button>
-<!--                        </div>-->
-                        <div th:if="${compo.category == 'one'}">
-                            <button class="space combo_1_nguoi" type="submit">
-                                <div class="item">
-                                    <div class="item_top">
-                                        <div class="item_img" >
-                                            <img th:src="'data:image/png;base64,' + ${compo.getImage}" alt=" Image" /><br>
-                                        </div>
-                                    </div>
-                                    <div class="item_infor">
-                                        <h2 th:text ="${compo.getNameComBo()}">cơm nanban</h2>
-                                        <p th:text ="${compo.getDescribe}">Mô Tả</p>
-                                        <p th:text ="${compo.getPrice()}" class="price">
-                                            35.000đ</p>
-                                        <p class="icon"><i
-                                                class="fas fa-plus-circle"></i></p>
-                                    </div>
-                                </div>
-                            </button>
-                        </div>
-
-                        <!--                    Com Bô một người-->
-                        <div th:if="${compo.category == 'newMeal'}">
-                            <button class="space combo_mon_moi" type="submit">
-                                <div class="item">
-                                    <div class="item_top">
-                                        <div class="item_img" >
-                                            <img th:src="'data:image/png;base64,' + ${compo.getImage}" alt=" Image" /><br>
-                                        </div>
-                                    </div>
-                                    <div class="item_infor">
-                                        <h2 th:text ="${compo.getNameComBo()}">cơm nanban</h2>
-                                        <p th:text ="${compo.getDescribe}">Mô Tả</p>
-                                        <p th:text = "${compo.getPrice()}" class="price">
-                                            35.000đ</p>
-                                        <p class="icon"><i
-                                                class="fas fa-plus-circle"></i></p>
-                                    </div>
-                                </div>
-                            </button>
-                        </div>
-
-                    </th:block>
-                </div>
-            </form>
+        </form>
     </div>
 </div>
 </body>
 <script>
     function showTab(category) {
-    // Ẩn tất cả sản phẩm trước
-    const allProducts = document.querySelectorAll('.space');
-    allProducts.forEach(product => {
-        product.style.display = 'none';
-    });
+     // Ẩn tất cả sản phẩm trước
+     const allProducts = document.querySelectorAll('.space');
+     allProducts.forEach(product => {
+         product.style.display = 'none';
+     });
 
-    // Hiển thị các sản phẩm thuộc nhóm được chọn
-    const selectedProducts = document.querySelectorAll(`.${category}`);
-    selectedProducts.forEach(product => {
-        product.style.display = 'block';
-    });
-}
+     // Hiển thị các sản phẩm thuộc nhóm được chọn
+     const selectedProducts = document.querySelectorAll(`.${category}`);
+     selectedProducts.forEach(product => {
+         product.style.display = 'block';
+     });
+ }
 </script>
 
 </html>
