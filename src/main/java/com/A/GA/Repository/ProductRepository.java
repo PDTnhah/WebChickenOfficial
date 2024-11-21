@@ -20,7 +20,7 @@
 
         //        Đường dẫn đến folder Image
 //        public static final  String test ="D:/image";
-        private static final String folderImage = "D:/WebChickenChaun/src/main/resources/templates/image";
+        private static final String folderImage = "C:/WebChickenOfficial/src/main/resources/templates/image";
     // mảng các sản phẩm
         public static final List<ProductChicken> tableProduct = new ArrayList<>();
 
@@ -43,7 +43,7 @@
 //            tạo sẳn ở order
             tableOrder.add(new ProductChicken(1,"gà chiên", "chiên",1000,tableImage.get(1)));
         }
-//        loát toàn bộ ảnh từ 1 folder chuyển về dạng strign Base86 để gửi thêm vào bảng data
+//        loát toàn bộ ảnh từ 1 folder chuyển về dạng string Base64 để gửi thêm vào bảng data
         public static void arrayImage(String folderName){
             File fileImage= new File(folderName);
             if(fileImage.exists()){

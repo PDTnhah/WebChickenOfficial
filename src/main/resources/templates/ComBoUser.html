@@ -254,8 +254,6 @@ li{
             <form>
                 <div class="products">
                     <th:block th:each="compo: ${allComBo}">
-<!--                        <div th:if="${compo.category == 'group'}">-->
-                            <!--   <p>Sản phẩm đắt: <span th:text="${product.name}"></span></p>-->
                             <button th:if="${compo.category == 'group'}" class="space combo_nhom" type="submit">
                                  <div class="item">
                                     <div class="item_top">
@@ -265,6 +263,7 @@ li{
                                     </div>
                                     <div class="item_infor">
                                         <h2 th:text ="${compo.getNameComBo()}">cơm nanban</h2>
+                                        <p th:text ="${compo.getDescribe}">Mô Tả</p>
                                         <p th:text ="${compo.getPrice()}" class="price">
                                             35.000đ</p>
                                        <p class="icon"><i
@@ -283,6 +282,7 @@ li{
                                     </div>
                                     <div class="item_infor">
                                         <h2 th:text ="${compo.getNameComBo()}">cơm nanban</h2>
+                                        <p th:text ="${compo.getDescribe}">Mô Tả</p>
                                         <p th:text ="${compo.getPrice()}" class="price">
                                             35.000đ</p>
                                         <p class="icon"><i
@@ -303,6 +303,7 @@ li{
                                     </div>
                                     <div class="item_infor">
                                         <h2 th:text ="${compo.getNameComBo()}">cơm nanban</h2>
+                                        <p th:text ="${compo.getDescribe}">Mô Tả</p>
                                         <p th:text = "${compo.getPrice()}" class="price">
                                             35.000đ</p>
                                         <p class="icon"><i
