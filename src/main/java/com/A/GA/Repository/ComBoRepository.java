@@ -17,5 +17,6 @@ public class ComBoRepository {
 
     public void addComBo(String nameComBo, int price, String category, String describe, String file) {
         ComBo newComBo= new ComBo(nameComBo,price,file,describe,category);
+        tableComBo.add(newComBo);
     }
 }

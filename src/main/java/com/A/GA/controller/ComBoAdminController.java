@@ -32,14 +32,14 @@ public class ComBoAdminController {
     public RedirectView addComBo(@RequestParam ("nameComBo") String nameComBo,
                                  @RequestParam("price") int price,
                                  @RequestParam ("describe")String describe,
-                                 @RequestParam ("image") String file,
+                                 @RequestParam ("image") String image,
                                  @RequestParam ("category") String category
                                  ){
-        comBoAdminService.addComBo(nameComBo,price,category,describe,file);
+        comBoAdminService.addComBo(nameComBo,price,category,describe,image);
         System.out.println(nameComBo);
         System.out.println(price);
         System.out.println(describe);
-        System.out.println(file);
+        System.out.println(image);
         return new RedirectView("/AdminHomeComBo");
 
     }

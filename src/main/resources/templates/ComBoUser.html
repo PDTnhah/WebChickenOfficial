@@ -221,7 +221,7 @@ li{
 </header>
 <div class="wrapper_1">
     <div class='image'>
-        <img th:src="'data:image/png;base64,' + ${imageKongPhuong}" alt=" Image" /><br>
+        <img th:src="'data:image/png;base64,' + ${imageKongPhuong}" alt=" Image"/><br>
     </div>
     <div class="nav">
         <p><a href="/homeUser"><h2>Danh mục sản phẩm</h2></a></p>
@@ -245,62 +245,77 @@ li{
     <!--thanh tìm kiếm-->
 
     <!--home các sản phẩm-->
-    <div class ="formCard">
-        <th:block th:each="product : ${ListProduct}">
-
+    <div class="formCard">
             <div class="select_list_item">
                 <button type="submit" class="tab_button" onclick="showTab('combo_nhom')">COMBO NHÓM</button>
                 <button type="submit" class="tab_button" onclick="showTab('combo_1_nguoi')">COMBO 1 NGƯỜI</button>
                 <button type="submit" class="tab_button" onclick="showTab('combo_mon_moi')">COMBO MÓN MỚI</button>
             </div>
+            <form>
+                <div class="products">
+                    <th:block th:each="compo: ${allComBo}">
+<!--                        <div th:if="${compo.category == 'group'}">-->
+                            <!--   <p>Sản phẩm đắt: <span th:text="${product.name}"></span></p>-->
+                            <button th:if="${compo.category == 'group'}" class="space combo_nhom" type="submit">
+                                 <div class="item">
+                                    <div class="item_top">
+                                        <div class="item_img" >
+                                            <img th:src="'data:image/png;base64,' + ${compo.getImage}" alt=" Image" /><br>
+                                        </div>
+                                    </div>
+                                    <div class="item_infor">
+                                        <h2>cơm nanban</h2>
+                                        <p class="price">
+                                            35.000đ</p>
+                                       <p class="icon"><i
+                                                class="fas fa-plus-circle"></i></p>
+                                    </div>
+                                </div>
+                            </button>
+<!--                        </div>-->
+                        <div th:if="${compo.category == 'one'}">
+                            <button class="space combo_1_nguoi" type="submit">
+                                <div class="item">
+                                    <div class="item_top">
+                                        <div class="item_img" >
+                                            <img th:src="'data:image/png;base64,' + ${compo.getImage}" alt=" Image" /><br>
+                                        </div>
+                                    </div>
+                                    <div class="item_infor">
+                                        <h2>cơm nanban</h2>
+                                        <p class="price">
+                                            35.000đ</p>
+                                        <p class="icon"><i
+                                                class="fas fa-plus-circle"></i></p>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
 
-            <form th:action="@{/order/product/{id}(id=${product.getId()})}" method="post">
-                <ul class="products">
-                    <button class="space combo_nhom" type="submit" >
-                        <li class="item" >
-                            <div class="item_top">
-                                <a class="item_img" href="@{/order/product/{id}(id=${product.getId()})}">
-                                    <img src="https://st2.depositphotos.com/4029643/7155/i/950/depositphotos_71557231-stock-photo-portrait-of-the-lady-in.jpg" alt="anh 1">
-                                </a>
-                            </div>
-                            <div class="item_infor">
-                                <a href="@{/order/product/{id}(id=${product.getId()})}"><h2>cơm nanban</h2></a>
-                                <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="price">35.000đ</p></a>
-                                <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="icon"><i class="fas fa-plus-circle"></i></p></a>
-                            </div>
-                        </li>
-                    </button>
-                    <button class="space combo_1_nguoi" type="submit">
-                        <li class="item" >
-                            <div class="item_top">
-                                <a class="item_img" href="@{/order/product/{id}(id=${product.getId()})}">
-                                    <img src="https://st2.depositphotos.com/4029643/7155/i/950/depositphotos_71557231-stock-photo-portrait-of-the-lady-in.jpg" alt="anh 1">
-                                </a>
-                            </div>
-                            <div class="item_infor">
-                                <a href="@{/order/product/{id}(id=${product.getId()})}"><h2>cơm nanban</h2></a>
-                                <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="price">35.000đ</p></a>
-                                <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="icon"><i class="fas fa-plus-circle"></i></p></a>
-                            </div>
-                        </li>
-                    </button>
-                    <button class="space combo_mon_moi" type="submit">
-                        <li class="item" >
-                            <div class="item_top">
-                                <a class="item_img" href="@{/order/product/{id}(id=${product.getId()})}">
-                                    <img src="https://st2.depositphotos.com/4029643/7155/i/950/depositphotos_71557231-stock-photo-portrait-of-the-lady-in.jpg" alt="anh 1">
-                                </a>
-                            </div>
-                            <div class="item_infor">
-                                <a href="@{/order/product/{id}(id=${product.getId()})}"><h2>cơm nanban</h2></a>
-                                <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="price">35.000đ</p></a>
-                                <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="icon"><i class="fas fa-plus-circle"></i></p></a>
-                            </div>
-                        </li>
-                    </button>
-                </ul>
+                        <!--                    Com Bô một người-->
+                        <div th:if="${compo.category == 'newMeal'}">
+                            <button class="space combo_mon_moi" type="submit">
+                                <div class="item">
+                                    <div class="item_top">
+                                        <div class="item_img" >
+                                            <img th:src="'data:image/png;base64,' + ${compo.getImage}" alt=" Image" /><br>
+                                        </div>
+                                    </div>
+                                    <div class="item_infor">
+                                       <h2>cơm nanban</h2>
+                                        <p class="price">
+                                            35.000đ</p>
+
+                                        <p class="icon"><i
+                                                class="fas fa-plus-circle"></i></p>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+
+                    </th:block>
+                </div>
             </form>
-        </th:block>
     </div>
 </div>
 </body>
