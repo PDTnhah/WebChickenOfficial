@@ -241,9 +241,6 @@ li{
 
 
     </style>
-    <ts>
-
-    </ts>
     <script>
         function chooseFile(fileInput){
     if(fileInput.files && fileInput.files[0]){
@@ -288,21 +285,21 @@ li{
     </div>
     <div class="nav">
         <p><a href="#"><h2>Danh mục sản phẩm</h2></a></p>
-        <p><a href="/UserHomeComBo"><h2>Danh mục combo</h2></a></p>
-        <p><a href="#"><h2>Trạng thái đơn hàng</h2></a></p>
-        <p><a href="#"><h2>Lịch sử đặt hàng</h2></a></p>
+        <p><a href="/AdminHomeComBo"><h2>Danh mục combo</h2></a></p>
+        <p><a href="#"><h2>Doanh Thu</h2></a></p>
+        <p><a href="#"><h2>Số Lượng Đã Bán</h2></a></p>
     </div>
 </div>
 
 
 <br><br>
 <div class="tuyen">
-    <h1 class="home">Kong Fuong Chicken User</h1>
+    <h1 class="home">Kong Fuong Chicken Admin</h1>
 
     <!--thanh tìm kiếm-->
     <form th:action="@{/searchBox}" method="POST">
         <input class="search_box" name="searchBox" type="text" placeholder="Tìm kiếm sản phẩm..." required>
-<!--        <button type="submit" class="additem"><a href="upload_image.html" target="_blank">Thêm sản phẩm</a></button>-->
+        <button type="submit" class="additem"><a href="upload_image.html" target="_blank">Thêm sản phẩm</a></button>
 
         <!--    <button type="submit" >ll</button>-->
     </form>
@@ -310,26 +307,25 @@ li{
 
     <!--home các sản phẩm-->
     <ul class="products">
-    <div class ="formCard">
-        <th:block th:each="product : ${ListProduct}">
-            <form th:action="@{/order/product/{id}(id=${product.getId()})}" method="post">
+        <div class ="formCard">
+            <th:block th:each="product : ${ListProduct}">
+                <form th:action="@{/order/product/{id}(id=${product.getId()})}" method="post">
                     <button class="space" type="submit">
                         <li class="item">
                             <div class="item_infor">
                                 <img th:src="'data:image/png;base64,' + ${product.getImage}" alt="Product Image" /><br>
                                 <h2 th:text="${product.getNameProduct()}" name="nameProduct">Tên sản phẩm</h2> <br>
                                 <i class="fa-solid fa-dollar-sign"></i> <h2 th:text="${product.getPrice()}" name="price">100000</h2>
-<!--                                thêm 1 trường ẩn nhằm lưu giá trị loại sản phẩm -->
                                 <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="icon"><i class="fas fa-plus-circle"></i></p></a>
                             </div>
                         </li>
                     </button>
 
-            </form>
+                </form>
 
-        </th:block>
-    </div>
-        </ul>
+            </th:block>
+        </div>
+    </ul>
 </div>
 </body>
 
