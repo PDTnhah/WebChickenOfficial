@@ -1,0 +1,76 @@
+<div class="container-fluid">
+    <header class="header bg-success text-white d-flex" style="align-items: center; justify-content:space-between">
+      <div class="menu-icon" (click)="toggleNavbar()">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+      <h3 class="header-title">Bảng điều khiển</h3>
+      <!-- Logout Button -->
+      <div class="header-button" style="padding: 0, 10; ">
+        <button class="btn btn-primary" (click)="home()">Trang chủ</button>
+        <button class="btn btn-danger text-start" (click)="logout()">Đăng xuất</button>
+      </div>
+    </header>
+      <div class="row">
+        <nav id="sidebar" *ngIf="isNavbarVisible"class="col-md-2 col-lg-2 d-md-block bg-light sidebar " [ngClass]="{'show': isNavbarVisible}">
+          <div class="position-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" 
+                  (click)="showAdminComponent('orders')"
+                  routerLink="/admin/orders"
+                  routerLinkActive="active">
+                  <i class="fab fa-first-order icon"></i>Danh mục đặt hàng
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" 
+                  (click)="showAdminComponent('categories')"
+                    routerLink="/admin/categories"
+                    routerLinkActive="active">
+                  <i class="fab fa-canadian-maple-leaf icon"></i>Danh mục phân loại 
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" 
+                  (click)="showAdminComponent('products')"
+                  routerLink="/admin/products"
+                  routerLinkActive="active">
+                  <i class="fab fa-codepen icon"></i>Danh mục sản phẩm
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" 
+                  (click)="showAdminComponent('users')"
+                  routerLink="/admin/users"
+                  routerLinkActive="active">
+                  <i class="fa-solid fa-users"></i> Danh mục người dùng
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" 
+                  (click)="showAdminComponent('revenue')"
+                  routerLink="/admin/revenue"
+                  routerLinkActive="active">
+                  <i class="fa-solid fa-chart-line"></i> Danh mục doanh thu
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div *ngIf="isNavbarVisible" class="col-md-10 col-lg-10 overflow-auto">
+       
+          <!-- <ng-container [ngSwitch]="adminComponent">
+            <app-order-admin *ngSwitchCase="'orders'"></app-order-admin> 
+            <app-product-admin *ngSwitchCase="'products'"></app-product-admin>
+            <app-category-admin *ngSwitchCase="'categories'"></app-category-admin> 
+            </ng-container> 
+            <app-user-admin *ngSwitchCase="'categories'"></app-user-admin>                      -->
+          
+          <router-outlet></router-outlet>
+        </div>
+        <div *ngIf="!isNavbarVisible" class="col-md-12 col-lg-12 overflow-auto">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+
+  </div>

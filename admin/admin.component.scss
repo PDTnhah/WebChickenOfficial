@@ -1,0 +1,66 @@
+.container-fluid {
+    background-color: white;
+    padding-left: 0 !important; /* Remove left padding */
+    padding-right: 0 !important; /* Remove right padding */
+}
+.header {
+    background: linear-gradient(to left, #c31432, #240b36);
+    /* Header background color */
+    color: white;
+    /* Text color */
+    padding: 10px;
+    /* Add padding to the header */
+    text-align: center;
+    /* Center-align text in the header */
+}
+#sidebar {
+    background: linear-gradient(to right, #c31432, #240b36);
+    color: white; /* Text color */
+    height: 100lvh;
+    overflow-y: auto; /* Add scrollbars if content overflows */
+    transform: translateX(-100%); /* Bắt đầu ở ngoài màn hình bên trái */
+  transition: transform 0.6s ease-out; /* Thêm hiệu ứng trượt mượt */
+  z-index: 1000;
+}
+#sidebar.show {
+    transform: translateX(0); /* Đặt vị trí sidebar về màn hình khi hiện */
+  }
+  
+/* Custom CSS for sidebar links */
+#sidebar a {
+    color: white; /* Text color for links */
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Add a border line at the top of each link */
+    padding: 10px 15px; /* Add padding to links for spacing */
+}
+/* Custom CSS for active link */
+#sidebar a.active {
+    font-weight: bold; /* Highlight active link */
+    background-color: #ca981b;
+}
+/* Change background color on hover */
+#sidebar a:hover {
+    background-color: #b0b300; /* Change the background color on hover */
+}
+.icon {
+    padding: 5px;
+}
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  .content-box {
+    transform: translateY(-20px); /* Vị trí ban đầu */
+    opacity: 0; /* Độ trong suốt ban đầu */
+    transition: transform 0.5s ease, opacity 0.5s ease; /* Hiệu ứng chuyển động */
+  }
+  
+  .content-box.ng-enter {
+    transform: translateY(0); /* Dịch chuyển về vị trí gốc */
+    opacity: 1; /* Hiển thị hoàn toàn */
+  }
+  
+  .content-box.ng-leave {
+    transform: translateY(-20px); /* Dịch chuyển lên trên khi ẩn đi */
+    opacity: 0; /* Ẩn */
+  }
+  

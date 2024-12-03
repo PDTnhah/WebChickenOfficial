@@ -1,0 +1,91 @@
+<div class="container-fluid">
+  <h1>Danh sách người dùng</h1>
+
+  <!-- Đoạn này có 1 ô searchbox bên trái, 1 combobox bên phải -->
+  <div class="row mb-3">
+    <div class="col-md-8">
+      <input type="text" class="form-control search-input" placeholder="Tìm kiếm user" [(ngModel)]="keyword">
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-primary" (click)="searchUsers()">Tìm kiếm</button>
+    </div>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID hh</th>
+        <th>Họ và tên</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Address</th>
+        <th>Sinh nhật</th>
+        <th>Quyền</th>
+        <th>Trạng thái</th>
+        <th>Hành động</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.fullname }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone_number }}</td>
+        <td>{{ user.address }}</td>
+        <td>{{ user.date_of_birth | date:'dd/MM/yyyy' }}</td> <!-- Định dạng ngày tháng năm -->
+        <td>{{ user.role.name }}</td>
+        <td>{{ user.is_active ? 'Active' : 'Inactive' }}</td> <!-- Hiển thị trạng thái -->
+        <td>
+          <button (click)="blockOrEnable(user.id)"
+            [ngClass]="{'btn btn-primary': !user.is_active, 'btn btn-danger': user.is_active}">
+            {{ user.is_active ? 'Block' : 'Activate' }}
+          </button>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-center" style="margin-top: 20px;">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <!-- "First" button -->
+        <li class="page-item" *ngIf="currentPage >= 0">
+          <a class="page-link" aria-label="First" (click)="onPageChange(0)">
+            First
+          </a>
+        </li>
+
+        <!-- "Previous" button -->
+        <li class="page-item" *ngIf="currentPage > 0">
+          <a class="page-link" aria-label="Previous" (click)="onPageChange(currentPage - 1)">
+            Previous
+          </a>
+        </li>
+
+        <!-- Page number buttons -->
+        <ng-container *ngFor="let page of visiblePages">
+          <li class="page-item" [ngClass]="{'active': page === currentPage}">
+            <a class="page-link" (click)="onPageChange(page-1)">
+              {{page}}
+            </a>
+          </li>
+        </ng-container>
+
+        <!-- "Next" button -->
+        <li class="page-item" *ngIf="currentPage < totalPages">
+          <a class="page-link" aria-label="Next" (click)="onPageChange(currentPage + 1)">
+            Next
+          </a>
+        </li>
+
+        <!-- "Last" button -->
+        <li class="page-item" *ngIf="currentPage < totalPages">
+          <a class="page-link" aria-label="Last" (click)="onPageChange(totalPages)">
+            Last
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

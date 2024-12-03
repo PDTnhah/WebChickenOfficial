@@ -1,0 +1,84 @@
+<div class="stats-container">
+  <div class="stat-card">
+    <h3>Tổng doanh thu</h3>
+  
+  </div>
+  <div class="stat-card">
+    <h3>Số lượng sản phẩm</h3>
+  
+  </div>
+  <div class="stat-card">
+    <h3>Doanh thu trung bình</h3>
+
+  </div>
+  <div class="stat-card">
+    <h3>Tăng trưởng</h3>
+
+  </div>
+</div>
+<div class="chart-container">
+  <h2>Biểu đồ Doanh Thu Bán Hàng</h2>
+  
+  <div class="chart-controls">
+    <div class="control-group">
+      <label for="data-type">Loại đơn hàng:</label>
+      <select id="data-type" >
+        <option value="all-order">Tất cả đơn hàng</option>
+        <option value="pending">Đơn hàng mới</option>
+        <option value="accept">Đã xác nhận</option>
+        <option value="shipping">Đang vận chuyển</option>
+        <option value="done">Hoàn tất</option>
+        <option value="cancel">Đã bị hủy</option> 
+      </select>
+    </div>
+    <div class="control-group">
+      <!-- <div class="date-picker"> -->
+        <Label for="date-range">Chọn khoảng thời gian</Label>
+        <button class="date-display" (click)="toggleDropdown()">
+          {{ selectedStartDate | date:'dd/MM/yyyy' }} - {{ selectedEndDate | date:'dd/MM/yyyy' }}
+          <i class="fa fa-calendar"></i>
+        </button>
+  
+        <div class="ddropdown-menu" *ngIf="isDropdownOpen">
+          
+          <ul class="preset-options" >
+            <li (click)="setDateRange('today')">Hôm nay</li>
+            <li (click)="setDateRange('yesterday')">Hôm qua</li>
+            <li (click)="setDateRange('this_week')">Tuần này</li>
+            <li (click)="setDateRange('last_week')">Tuần trước</li>
+            <li (click)="setDateRange('this_month')">Tháng này</li>
+            <li (click)="setDateRange('last_month')">Tháng trước</li>
+            <li (click)="setCustomDate()">Tùy chọn</li>
+          </ul>
+  
+          <div class="custom-date" *ngIf="isCustomDate">
+            <label for="start-date">Ngày bắt đầu:</label>
+            <input type="date" id="start-date" [(ngModel)]="customStartDate">
+            <label for="end-date">Ngày kết thúc:</label>
+            <input type="date" id="end-date" [(ngModel)]="customEndDate">
+            <button (click)="applyCustomDate()">Áp dụng</button>
+          </div>
+        <!-- </div> -->
+      </div>
+    </div>
+    <div class="control-group">
+      <label for="data-type">Biểu đồ dạng:</label>
+      <select id="chart-type" [(ngModel)]="data_type" (ngModelChange)="onChartTypeChange($event)">
+        <option value="">Chọn biểu đồ</option>
+        <option value="line" >Tổng doanh thu</option>
+        
+        <option value="bar" >Tổng số lượng sản phẩm</option>
+      </select>
+    </div>
+ </div>
+ 
+ <div class="chart-placeholder" *ngIf="data_type === 'line'">
+    <canvas  id="lineChart" style="width:100%; height: 100%;"></canvas>  
+</div>
+<div class="chart-placeholder" *ngIf="data_type === 'bar'">
+  <canvas id="barChart" style="width:100%; height: 100%;"></canvas>  
+</div>
+<div class="chart-placeholder" *ngIf="data_type === ''">
+   <p>Biểu đồ sẽ hiện thị tại đây</p>
+</div>
+</div>
