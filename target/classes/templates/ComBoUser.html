@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
@@ -259,22 +258,21 @@ li{
             <button type="submit" class="tab_button" onclick="showTab('combo_1_nguoi')">COMBO 1 NGƯỜI</button>
             <button type="submit" class="tab_button" onclick="showTab('combo_mon_moi')">COMBO MÓN MỚI</button>
         </div>
-        <form>
-            <div class="products">
-                <th:block th:each="compo: ${allComBo}" class = "all_combo">
 
+        <div class="products">
+            <th:block th:each="compo: ${allComBo}" class="all_combo">
+                <form th:action="@{/order/productComBo/{id}(id=${compo.getMaComBo()})}" method="post">
                     <button th:if="${compo.category == 'group'}" class="space combo_nhom" type="submit">
                         <div class="item">
                             <div class="item_top">
-                                <div class="item_img" >
-                                    <img th:src="'data:image/png;base64,' + ${compo.getImage}" alt=" Image" /><br>
+                                <div class="item_img">
+                                    <img th:src="'data:image/png;base64,' + ${compo.getImage}" alt=" Image"/><br>
                                 </div>
                             </div>
                             <div class="item_infor">
-                                <h2 th:text ="${compo.getNameComBo()}">cơm nanban</h2>
-                                <p th:text ="${compo.getDescribe}">Mô Tả</p>
-                                <p th:text ="${compo.getPrice()}" class="price">
-                                    35.000đ</p>
+                                <h2 th:text="${compo.getNameComBo()}">cơm nanban</h2>
+                                <p th:text="${compo.getDescribe}">Mô Tả</p>
+                                <p th:text="${compo.getPrice()}" class="price">35.000đ</p>
                                 <p class="icon"><i
                                         class="fas fa-plus-circle"></i></p>
                             </div>
@@ -284,14 +282,14 @@ li{
                         <button class="space combo_1_nguoi" type="submit">
                             <div class="item">
                                 <div class="item_top">
-                                    <div class="item_img" >
-                                        <img th:src="'data:image/png;base64,' + ${compo.getImage}" alt=" Image" /><br>
+                                    <div class="item_img">
+                                        <img th:src="'data:image/png;base64,' + ${compo.getImage}" alt=" Image"/><br>
                                     </div>
                                 </div>
                                 <div class="item_infor">
-                                    <h2 th:text ="${compo.getNameComBo()}">cơm nanban</h2>
-                                    <p th:text ="${compo.getDescribe}">Mô Tả</p>
-                                    <p th:text ="${compo.getPrice()}" class="price">
+                                    <h2 th:text="${compo.getNameComBo()}">cơm nanban</h2>
+                                    <p th:text="${compo.getDescribe}">Mô Tả</p>
+                                    <p th:text="${compo.getPrice()}" class="price">
                                         35.000đ</p>
                                     <p class="icon"><i
                                             class="fas fa-plus-circle"></i></p>
@@ -305,14 +303,14 @@ li{
                         <button class="space combo_mon_moi" type="submit">
                             <div class="item">
                                 <div class="item_top">
-                                    <div class="item_img" >
-                                        <img th:src="'data:image/png;base64,' + ${compo.getImage}" alt=" Image" /><br>
+                                    <div class="item_img">
+                                        <img th:src="'data:image/png;base64,' + ${compo.getImage}" alt=" Image"/><br>
                                     </div>
                                 </div>
                                 <div class="item_infor">
-                                    <h2 th:text ="${compo.getNameComBo()}">cơm nanban</h2>
-                                    <p th:text ="${compo.getDescribe}">Mô Tả</p>
-                                    <p th:text = "${compo.getPrice()}" class="price">
+                                    <h2 th:text="${compo.getNameComBo()}">cơm nanban</h2>
+                                    <p th:text="${compo.getDescribe}">Mô Tả</p>
+                                    <p th:text="${compo.getPrice()}" class="price">
                                         35.000đ</p>
                                     <p class="icon"><i
                                             class="fas fa-plus-circle"></i></p>
@@ -320,10 +318,11 @@ li{
                             </div>
                         </button>
                     </div>
+                </form>
 
-                </th:block>
-            </div>
-        </form>
+            </th:block>
+        </div>
+
     </div>
 </div>
 </body>

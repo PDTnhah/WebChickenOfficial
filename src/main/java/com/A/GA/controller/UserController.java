@@ -23,6 +23,7 @@ public class UserController {
     @GetMapping("/order/product/get")
     public String order(Model model){
         model.addAttribute("listOrderProduct", serviceProduct.getOrderProduct());
+        model.addAttribute("ListProductComBo",serviceProduct.getOrderProductComBo());
         model.addAttribute("sumProduct",serviceProduct.sumProduct());
         return "order";
     }
@@ -40,6 +41,21 @@ public class UserController {
         serviceProduct.deleteOrder(id);
         return new RedirectView("/order/product/get");
     }
+
+//     sử lý với trang khi người dùng nhấn chọn sản phẩm combo
+    @PostMapping("/order/productComBo/{id}")
+    public RedirectView orderComBo(@PathVariable("id") int maComBo){
+        serviceProduct.addOrderProductComBo(maComBo);
+        return  new RedirectView("/order/product/get");
+    }
+
+//    deleteComBo
+    @GetMapping("/order/deleteComBo")
+    public RedirectView OrderDeleteComBo(@RequestParam ("id") int maComBo){
+        serviceProduct.deleteOrderComBo(maComBo);
+        return new RedirectView("/order/product/get");
+    }
+
 
 //     sử lý thanh tìm kiếm
     @PostMapping("/searchBox")

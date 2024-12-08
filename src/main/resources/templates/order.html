@@ -5,32 +5,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+            display: block;
+            margin: 20px auto;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .total-row td {
+            font-weight: bold;
+            background-color: #f1f1f1;
+        }
+
+        .action-links {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 
 <body>
 <form th:action="@{/NotificationToAdmin}" method="post">
+    <!-- First Table -->
+    Sản Phẩm Đơn 1
     <table border="1">
         <tr>
             <td>Product Name</td>
             <td>Category</td>
-            <td>price</td>
+            <td>Price</td>
         </tr>
         <th:block th:each="product : ${listOrderProduct}">
             <tr>
                 <td th:text="${product.getNameProduct()}">...</td>
                 <td th:text="${product.getCategory()}">...</td>
                 <td th:text="${product.getPrice()}">...</td>
-                <td> <a th:href = "@{'/order/delete'(id= ${product.getId()})}">delete</a> </td>
-
+                <td><a th:href="@{'/order/delete'(id= ${product.getId()})}">delete</a></td>
             </tr>
         </th:block>
         <tr>
-            <td>Tổng tiền: </td>
-            <td th:text = "${sumProduct}">.... </td>
+            <td colspan="4" class="action-links"><a th:href="@{'/homeUser'}">add Product</a></td>
         </tr>
-
-        <td> <a th:href = "@{'/homeUser'}">add Product</a> </td>
     </table>
+
+     Sản Phẩm Com Bo
+    <table border="1">
+        <tr>
+            <td>Product Name</td>
+            <td>Category</td>
+            <td>Price</td>
+            <td>Description</td>
+        </tr>
+        <th:block th:each="product : ${ListProductComBo}">
+            <tr>
+                <td th:text="${product.getNameComBo()}">...</td>
+                <td th:text="${product.getCategory()}">...</td>
+                <td th:text="${product.getPrice()}">...</td>
+                <td th:text="${product.getDescribe()}">...</td>
+                <td><a th:href="@{'/order/deleteComBo'(id= ${product.getMaComBo()})}">delete</a></td>
+            </tr>
+        </th:block>
+        <tr>
+            <td colspan="5" class="action-links"><a th:href="@{'/UserHomeComBo'}">add Product</a></td>
+        </tr>
+    </table>
+    <table border="1">
+        <tr>
+            <th>Tổng tiền</th>
+        </tr>
+        <tr>
+            <td th:text="${sumProduct}" colspan="4">....</td>
+        </tr>
+    </table>
+
     <button type="submit">comfirm order</button>
 </form>
 </body>

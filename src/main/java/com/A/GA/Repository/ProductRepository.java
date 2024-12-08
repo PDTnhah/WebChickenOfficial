@@ -1,5 +1,6 @@
     package com.A.GA.Repository;
 
+    import com.A.GA.Model.ComBo;
     import com.A.GA.Model.ProductChicken;
     import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
     import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,10 @@
     // mảng các sản phẩm
         public static final List<ProductChicken> tableProduct = new ArrayList<>();
 
-    //    mảng các sản phẩm người đã đặt
+    //    mảng các sản phẩm người đã chọn
         public static final List<ProductChicken> tableOrder = new ArrayList<>();
+//        mảng luu giữ các sản phầm combo người dùng đã chọn
+        public static final List<ComBo> tableOrderComBo = new ArrayList<>();
 
 //         mảng dùng để lưu giữ tất cả ảnh, ảnh sẽ được map theo index của từng sản phẩm ví dụ sản phẩm ở vị trí 1 sẽ map đến mảng ảnh ở vị trí 1
         public static final List<String> tableImage = new ArrayList<>();
@@ -87,6 +90,15 @@
             }
             return null;
         }
+//        tìm kiếm sản phẩm ComBo bằng id
+        public ComBo getByIdProductComBo(int maComBo) {
+            for (ComBo comBo : ComBoRepository.tableComBo){
+                if (comBo.getMaComBo() == maComBo){
+                    return comBo;
+                }
+            }
+            return null;
+        }
 
         // lấy ra toàn bộ sản phẩm
         public List<ProductChicken> getProduct() {
@@ -96,12 +108,19 @@
         // Lấy ra toàn bộ sản phẩm người dùng đã chọn
         public List<ProductChicken> getOrderProduct() {
             return tableOrder;
+        }public List<ComBo> getOrderProductComBo() {
+            return tableOrderComBo;
         }
 
         // thêm sản phẩm người dùng đã chọn vào mảng
         public void addOrderProduct(int id) {
             ProductChicken productChicken = getByIdProduct(id);
             tableOrder.add(productChicken);
+        }
+//      thêm ComBo sản phẩm khi người dùng or vào bảng order tạm thời
+        public void addOrderProductComBo(int maComBo) {
+            ComBo comBo = getByIdProductComBo(maComBo);
+            tableOrderComBo.add(comBo);
         }
 
         // tìm kiếm sản phẩm khi người dùng nhấn chọn sản phẩm
@@ -120,6 +139,10 @@
             ProductChicken productOrder = getByIdOrder(id);
             tableOrder.remove(productOrder);
         }
+        public void deleteOrderComBo(int maComBo) {
+            ComBo comBo = getByIdProductComBo(maComBo);
+            tableOrderComBo.remove(comBo);
+        }
 
         //lấy ra các sản phẩm khi người dùng gõ vào thanh tìm kiếm
         public List<ProductChicken> listSearchBox(String searchBox) {
@@ -134,6 +157,9 @@
             double sum = 0 ;
             for (ProductChicken productChicken : tableOrder){
                 sum = sum +productChicken.getPrice();
+            }
+            for (ComBo comBo : tableOrderComBo){
+                sum = sum + comBo.getPrice();
             }
             return sum;
         }

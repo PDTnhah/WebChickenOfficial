@@ -1,5 +1,6 @@
 package com.A.GA.Service;
 
+import com.A.GA.Model.ComBo;
 import com.A.GA.Model.ProductChicken;
 import com.A.GA.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,10 @@ public class ProductService {
 
     public List<ProductChicken> getOrderProduct() {
         return productRepository.getOrderProduct();
+    }public List<ComBo> getOrderProductComBo() {
+        return productRepository.getOrderProductComBo();
     }
+
 
     public void addOrderProduct(int id) {
         if (!ProductRepository.tableProduct.isEmpty()) {
@@ -31,7 +35,9 @@ public class ProductService {
         }
 
     }
-
+    public void addOrderProductComBo(int maComBo) {
+        productRepository.addOrderProductComBo(maComBo);
+    }
     public List<ProductChicken> getProduct() {
         if (!ProductRepository.tableProduct.isEmpty()) {
             List<ProductChicken> productChickens= productRepository.getProduct();
@@ -42,7 +48,10 @@ public class ProductService {
 
     public void deleteOrder(int id) {
         productRepository.deleteOrder(id);
+    }public void deleteOrderComBo(int maComBo) {
+        productRepository.deleteOrderComBo(maComBo);
     }
+
 
     public List<ProductChicken> searchBox(String searchBox) {
         return productRepository.listSearchBox(searchBox);
@@ -57,4 +66,6 @@ public class ProductService {
     public String getImage() {
         return productRepository.loadImage();
     }
+
+
 }

@@ -4,26 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Kong Fuong Chicken</title>
-    <link rel ="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="https://kit.fontawesome.com/48c0283a22.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href ="https://fonts.googleapis.com/css2" rel ="stylesheet" >
+    <!-- <link rel ="stylesheet" href="style.css"> -->
+    <link rel ="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <style >
+    <!-- <script src="dropdown.js"></script> -->
+    <style>
         *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-*{
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    font-family: "time New Roman";
+body{
+    height: 100vh;
+    background: #f8f9f0;
+    font-family: "Poppins";
 }
 
 .Bar{
@@ -33,9 +31,9 @@
 }
 .Post{
 
-    width: 300px;
+    width: 270px;
     height: 720px;
-    background: #1A1A19;
+    background: #022135;
 
 }
 .Shopping_Cart{
@@ -61,21 +59,7 @@
     position:absolute;
     top : 150px;
 }
-header{
-    background-color: #E4002B;
-    height: 40px;
-    width: 100%;
-    position: fixed;
-    top: 0px;
-    display: block;
-}
-header i{
-    color: white;
-    padding: 5px;
-    font-size: 30px;
-    padding-left: 20px;
-    float: right;
-}
+
 .Navigation h2{
     margin-top: 50px;
 }
@@ -239,14 +223,14 @@ h1{
     position: relative;
     margin: 50px 100px;
 }
-.dropdown1 {
+.dropdown {
     position: relative;
     display: inline-block;
     margin: 50px 100px;
     top: 100px;
 }
 
-.dropdown1 button {
+.dropdown button {
     background-color: #E4002B;
     color: white;
     padding: 15px 0px;
@@ -259,7 +243,7 @@ h1{
 }
 
 /* Mũi tên hướng xuống mặc định */
-.dropdown1 button::before {
+.dropdown button::before {
     content: '▼';
     position: absolute;
     right: 10px;
@@ -268,15 +252,15 @@ h1{
 }
 
 /* Khi mở dropdown, mũi tên sẽ hướng lên */
-.dropdown1 button.active::before {
+.dropdown button.active::before {
     content: '▲'; /* Mũi tên hướng lên */
 }
 
-.dropdown1 button span {
+.dropdown button span {
     margin-left: 0px; /* Đẩy nội dung qua bên phải để không chèn vào mũi tên */
 }
 
-.dropdown1-content {
+.dropdown-content {
     display: none;
     position: absolute;
     background-color: #E4002B;
@@ -284,7 +268,7 @@ h1{
     z-index: 1;
 }
 
-.dropdown1-content a {
+.dropdown-content a {
     color: white;
     padding: 12px 0px;
     text-decoration: none;
@@ -292,147 +276,79 @@ h1{
     cursor: pointer;
 }
 
-.dropdown1-content a:hover {
+.dropdown-content a:hover {
     background-color: #ddd;
 }
-.select a{
-    display: block;
-}
 
-.select {
-    display: none;
-    background-color: white;
-    border: 2px solid black;
-    padding: 5px;
-    position: fixed;
-    top: 40px;
-    right: 0px;
-}
-.button_select{
-    position: fixed;
-    right: 5px;
-}
-.button{
-    height: 40px;
-    background-color: transparent;
-    border: none;
-    position: fixed;
-    right: 5px;
-    cursor: pointer;
-}
-.select a{
-    text-decoration: none;
-    cursor: pointer;
-    color:black;
-}
-.button:active{
-    opacity: 0.5;
-}
-.select a:hover{
-    background-color: rgba(128, 128, 128, 0.404);
-}
-.select a{
-    font-size: 17px;
-}
-.cart{
-    position: fixed;
-    right: 70px;
-}
-.item_img img{
-    width: 200px;
-    height: 180px;
-    border-radius: 60%;
-    margin: 40px 50px;
-}
-.Navigation a{
-    padding: 20px;
-}
-.Navigation{
-    margin-top: 15px;
-    margin-left: 15px;
-}
+
+
+
+
     </style>
-    <script>
-        function chooseFile(fileInput){
-    if(fileInput.files && fileInput.files[0]){
-        let reader = new FileReader();
-
-        reader.onload = function(e){
-            $('#image').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(fileInput.files[0]); // Sửa file[0] thành files[0]
-    }
-}
-
-        document.addEventListener('DOMContentLoaded', function() {
-        const button = document.getElementById('button')
-        const selectLinks = document.getElementById('selectLinks');
-
-        button.addEventListener('click', function() {
-            if (selectLinks.style.display === 'block') {
-                selectLinks.style.display = 'none';
-            } else {
-                selectLinks.style.display = 'block';
-            }
-        });
-    });
-    </script>
 </head>
 <body>
-<header>
-    <div class="button_select">
-        <button class="button" id="button"><i class="fa-solid fa-user"></i></button>
-        <div class="select" id="selectLinks">
-            <a href="#">Thông tin khách hàng</a>
-            <a href="/login/home">Đăng xuất</a>
-        </div>
-    </div>
-    <a href="#" class="cart"><i class='bx bx-cart'></i></a>
-</header>
-<!-- <div class="Circle">
-    <div class="Kong_Fuong_Chicken">
-        <img src="/ImageSateOrder/KongFuongChicken.jpeg" alt=""></div>
-</div> -->
-
-<div class="Post">
-    <div class="item_img">
-        <img src="/ImageSateOrder/KongFuongChicken.jpeg" alt=""></div>
+<div class="Title_Box">
+    <a>Xác nhận thông tin đơn hàng</a>
 </div>
-<div class="Navigation">
-    <p><a href="/homeUser"><h2>Danh mục sản phẩm</h2></a></p>
-    <p><a href="/UserHomeComBo"><h2>Danh mục combo</h2></a></p>
-    <p><a href="trangthaidon.html"><h2>Trạng thái đơn hàng</h2></a></p>
-    <p><a href="#"><h2>Lịch sử đặt hàng</h2></a></p>
+<div class="Name">
+    <input type="text" placeholder="Họ và tên">
 </div>
+<div class="Phone_Number">
+    <input type="text" placeholder="Số điện thoại">
 </div>
-<div class="Status">
-    <div class="step">
-        <img src="/ImageSateOrder/Ordered.png" alt="Đơn đã đặt">
-        <div>Đơn đã đặt</div>
-        <div class="time">20:00 13/10/2024</div>
-    </div>
-    <img src="/ImageSateOrder/Arrow.png">
-    <div class="step">
-        <img src="/ImageSateOrder/Payments.png" alt="Xác nhận thanh toán">
-        <div>Đã xác nhận thông tin thanh toán</div>
-        <div class="time">20:05 13/10/2024</div>
-    </div>
-    <img src="/ImageSateOrder/Arrow.png">
-    <div class="step">
-        <img src="/ImageSateOrder/Delivering.png" alt="Giao cho ĐVVC">
-        <div>Đã giao cho ĐVVC</div>
-        <div class="time">20:25 13/10/2024</div>
-    </div>
-    <img src="/ImageSateOrder/Arrow.png">
-    <div class="step">
-        <img src="/ImageSateOrder/Delivered.png" alt="Giao hàng thành công">
-        <div>Giao hàng thành công</div>
-        <div class="time">20:40 13/10/2024</div>
-    </div>
-    <img src="/ImageSateOrder/Arrow.png">
-    <div class="step">
-        <img src="/ImageSateOrder/Rate.png" alt="Đánh giá">
-        <div>Đánh giá</div>
+<div class="Address">
+    <input type="text" placeholder="Địa chỉ">
+</div>
+<div class="dropdown">
+    <button onclick="toggleDropdown()" id="dropdownButton"><span>Đơn vị vận chuyển</span></button>
+    <div class="dropdown-content" id="dropdownMenu">
+        <a onclick="selectOption('GrabFood')">GrabFood</a>
+        <a onclick="selectOption('ShoppeFood')">ShoppeFood</a>
+        <a onclick="selectOption('BeFood')">BeFood</a>
     </div>
 </div>
+<div class="Message">
+    <input type="text" placeholder="Lời nhắn cho tài xế">
+</div>
+<div class="Confirm">
+    <a href="trangthaidon.html">Xác nhận</a></div>
 </body>
+<script>
+    function toggleDropdown() {
+    const dropdownMenu = document.getElementById("dropdownMenu");
+    const dropdownButton = document.getElementById("dropdownButton");
+
+    // Đổi trạng thái hiển thị của menu
+    dropdownMenu.style.display = (dropdownMenu.style.display === "block") ? "none" : "block";
+
+    // Thêm/xóa lớp 'active' để thay đổi hướng mũi tên
+    dropdownButton.classList.toggle("active");
+}
+
+function selectOption(option) {
+    const dropdownButton = document.getElementById("dropdownButton");
+    dropdownButton.querySelector("span").textContent = option;
+    document.getElementById("dropdownMenu").style.display = "none";
+
+    // Xóa lớp 'active' để mũi tên trở về hướng xuống sau khi chọn
+    dropdownButton.classList.remove("active");
+}
+
+window.onclick = function(event) {
+    if (!event.target.matches('#dropdownButton') && !event.target.matches('#dropdownButton span')) {
+        const dropdowns = document.getElementsByClassName("dropdown-content");
+        const dropdownButton = document.getElementById("dropdownButton");
+
+        for (let i = 0; i < dropdowns.length; i++) {
+            const openDropdown = dropdowns[i];
+            if (openDropdown.style.display === "block") {
+                openDropdown.style.display = "none";
+            }
+        }
+
+        // Xóa lớp 'active' khi click ra ngoài để mũi tên trở về hướng xuống
+        dropdownButton.classList.remove("active");
+    }
+}
+</script>
+</html>
