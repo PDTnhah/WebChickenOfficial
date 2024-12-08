@@ -19,6 +19,7 @@ public class UserController {
         return "homeUser";
     }
 
+
     // lấy ra toàn bộ danh sách khách hàng đã order
     @GetMapping("/order/product/get")
     public String order(Model model){
@@ -61,6 +62,7 @@ public class UserController {
     @PostMapping("/searchBox")
     public String search(@RequestParam ("searchBox") String searchBox, Model model ){
         model.addAttribute("ListProduct", serviceProduct.searchBox(searchBox));
+        model.addAttribute("Image",serviceProduct.getImage());
         return "homeUser";
     }
 }

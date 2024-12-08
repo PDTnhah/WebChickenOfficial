@@ -10,4 +10,8 @@ public class orderController {
     public String HomeStateOrder(Model model){
         return "stateOrder";
     }
+    @GetMapping("/ConfirmOrder")
+    public String confirmOrder(Model model){
+        return "confirmOrder";
+    }
 }

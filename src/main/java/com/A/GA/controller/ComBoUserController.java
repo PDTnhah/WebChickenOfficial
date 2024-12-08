@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ComBoUserController {
@@ -19,6 +21,12 @@ public class ComBoUserController {
     public String homeComBo(Model model){
         model.addAttribute("imageKongPhuong", loginService.image());
         model.addAttribute("allComBo" , comBoUserService.getAllComBo());
+        return "ComBoUser";
+    }
+    @PostMapping("/searchBoxComBo")
+    public String search(@RequestParam("searchBox") String searchBox, Model model ){
+        model.addAttribute("allComBo", comBoUserService.searchBoxComBo(searchBox));
+        model.addAttribute("imageKongPhuong", loginService.image());
         return "ComBoUser";
     }
 

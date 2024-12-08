@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class ComBoRepository {
@@ -73,5 +74,12 @@ public class ComBoRepository {
     public void addComBo(String nameComBo, int price, String category, String describe, String file) {
         ComBo newComBo= new ComBo(nameComBo,price,file,describe,category);
         tableComBo.add(newComBo);
+    }
+
+    public List<ComBo> searchBoxComBo(String searchBox) {
+        String lowerCaseKeyword = searchBox.toLowerCase();
+         return tableComBo.stream()
+                .filter(product -> product.getNameComBo().toLowerCase().contains(lowerCaseKeyword))
+                .collect(Collectors.toList());
     }
 }

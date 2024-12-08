@@ -14,4 +14,8 @@ public class ComBoUserService {
     public List<ComBo> getAllComBo() {
         return comBoRepository.getAllComBo();
     }
+
+    public List<ComBo> searchBoxComBo(String searchBox) {
+        return comBoRepository.searchBoxComBo(searchBox);
+    }
 }
