@@ -8,7 +8,9 @@
     <title>Kong Fuong Chicken</title>
     <link rel ="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
+    <script src="https://kit.fontawesome.com/48c0283a22.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <style >
         *{
@@ -17,10 +19,11 @@
     box-sizing: border-box;
 }
 
-body{
-    height: 100vh;
-    background: #f8f9f0;
-    font-family: "Poppins";
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "time New Roman";
 }
 
 .Bar{
@@ -30,9 +33,9 @@ body{
 }
 .Post{
 
-    width: 270px;
+    width: 300px;
     height: 720px;
-    background: #022135;
+    background: #1A1A19;
 
 }
 .Shopping_Cart{
@@ -58,7 +61,21 @@ body{
     position:absolute;
     top : 150px;
 }
-
+header{
+    background-color: #E4002B;
+    height: 40px;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    display: block;
+}
+header i{
+    color: white;
+    padding: 5px;
+    font-size: 30px;
+    padding-left: 20px;
+    float: right;
+}
 .Navigation h2{
     margin-top: 50px;
 }
@@ -278,34 +295,107 @@ h1{
 .dropdown1-content a:hover {
     background-color: #ddd;
 }
+.select a{
+    display: block;
+}
 
-
-
-
+.select {
+    display: none;
+    background-color: white;
+    border: 2px solid black;
+    padding: 5px;
+    position: fixed;
+    top: 40px;
+    right: 0px;
+}
+.button_select{
+    position: fixed;
+    right: 5px;
+}
+.button{
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    position: fixed;
+    right: 5px;
+    cursor: pointer;
+}
+.select a{
+    text-decoration: none;
+    cursor: pointer;
+    color:black;
+}
+.button:active{
+    opacity: 0.5;
+}
+.select a:hover{
+    background-color: rgba(128, 128, 128, 0.404);
+}
+.select a{
+    font-size: 17px;
+}
+.cart{
+    position: fixed;
+    right: 70px;
+}
+.item_img img{
+    border-radius: 50%;
+    /* margin-top: 40px; */
+}
 
     </style>
+    <script>
+        function chooseFile(fileInput){
+    if(fileInput.files && fileInput.files[0]){
+        let reader = new FileReader();
+
+        reader.onload = function(e){
+            $('#image').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(fileInput.files[0]); // Sửa file[0] thành files[0]
+    }
+}
+
+        document.addEventListener('DOMContentLoaded', function() {
+        const button = document.getElementById('button')
+        const selectLinks = document.getElementById('selectLinks');
+
+        button.addEventListener('click', function() {
+            if (selectLinks.style.display === 'block') {
+                selectLinks.style.display = 'none';
+            } else {
+                selectLinks.style.display = 'block';
+            }
+        });
+    });
+    </script>
 </head>
 <body>
-<div class="Bar">
-    <button class="Shopping_Cart">
-        <i class='bx bx-cart'></i>
-    </button>
-    <button class="User_Icon">
-        <i class='bx bx-user'></i>
-    </button>
-</div>
-<div class="Circle">
+<header>
+    <div class="button_select">
+        <button class="button" id="button"><i class="fa-solid fa-user"></i></button>
+        <div class="select" id="selectLinks">
+            <a href="#">Thông tin khách hàng</a>
+            <a href="/login/home">Đăng xuất</a>
+        </div>
+    </div>
+    <a href="#" class="cart"><i class='bx bx-cart'></i></a>
+</header>
+<!-- <div class="Circle">
     <div class="Kong_Fuong_Chicken">
-        <img src="/ImageSateOrder/KongFuongChicken.png" alt=""></div>
-</div>
+        <img src="/ImageSateOrder/KongFuongChicken.jpeg" alt=""></div>
+</div> -->
 
 <div class="Post">
-    <div class="Navigation">
-        <p><a href="/homeUser"><h2>Danh mục sản phẩm</h2></a></p>
-        <p><a href="/UserHomeComBo"><h2>Danh mục combo</h2></a></p>
-        <p><a href="trangthaidon.html"><h2>Trạng thái đơn hàng</h2></a></p>
-        <p><a href="#"><h2>Lịch sử đặt hàng</h2></a></p>
-    </div>
+    <div class="item_img">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWphenrFmicwysLQ7LtQdOxkPkS0EbrcckaA&s" alt=""></div>
+</div>
+<div class="Navigation">
+    <p><a href="/homeUser"><h2>Danh mục sản phẩm</h2></a></p>
+    <p><a href="/UserHomeComBo"><h2>Danh mục combo</h2></a></p>
+    <p><a href="trangthaidon.html"><h2>Trạng thái đơn hàng</h2></a></p>
+    <p><a href="#"><h2>Lịch sử đặt hàng</h2></a></p>
+</div>
 </div>
 <div class="Status">
     <div class="step">
