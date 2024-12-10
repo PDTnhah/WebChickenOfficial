@@ -1,7 +1,9 @@
 package com.A.GA.Model;
 
+import com.A.GA.Repository.ComBoRepository;
+
 public class ComBo {
-    private static int maComBoCount=0;
+    private static int maComBoCount= ComBoRepository.tableComBo.size(); // tự động tăng id
     private int maComBo;
     private String nameComBo;
     private int price;

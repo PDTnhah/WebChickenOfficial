@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kong Fuong Chicken</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link href ="https://fonts.googleapis.com/css2" rel ="stylesheet" >
+    <link href="https://fonts.googleapis.com/css2" rel="stylesheet">
     <!-- <link rel ="stylesheet" href="style.css"> -->
-    <link rel ="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <!-- <script src="dropdown.js"></script> -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+          rel="stylesheet">
     <style>
         *{
     margin: 0;
@@ -176,12 +176,12 @@ h1{
     position: relative;
     top:50px;
     display:block;
+    margin: 25px 100px;
 }
 .Name input{
     height: 50px;
     width: 600px;
     position: relative;
-    margin: 50px 100px;
 }
 .Phone_Number{
     height: 50px;
@@ -189,162 +189,114 @@ h1{
     position: relative;
     top:50px;
     left: 700px;
-    display:block
+    display:block;
+    margin: 25px 100px;
 }
 .Phone_Number input{
     height: 50px;
     width: 600px;
     position: relative;
-    margin: 50px 100px;
-    bottom:50px;
+    bottom :75px;
 }
 .Address{
     height: 50px;
     width: 1300px;
     position: relative;
     top: 50px;
+    margin: 25px 100px;
+    display:block;
 }
 .Address input{
     height: 50px;
     width: 1300px;
     position: relative;
-    margin: 50px 100px;
+}
+.Delivery_Unit{
+    height: 50px;
+    width: 600px;
+    position: relative;
+    display:block;
+    margin: 0px 100px;
+    top:100px;
+}
+.Delivery_Unit select{
+    height: 50px;
+    width: 600px;
+    position: relative;
+    background: #E4002B;
+    color:white;
+    text-align: left;
+    font-size:16px;
+}
+.Payment_Method{
+    height: 50px;
+    width: 600px;
+    position: relative;
+    display:block;
+    margin: 0px 100px;
+    top:50px;
+    left:700px;
+}
+.Payment_Method select{
+    height: 50px;
+    width: 600px;
+    position: relative;
+    background: #E4002B;
+    color:white;
+    text-align: left;
+    font-size:16px;
 }
 .Message{
     height: 50px;
     width: 600px;
     position: relative;
-    top:50px;
+    top:100px;
     display:block;
+    margin: 50px 100px;
 }
 .Message input{
     height: 50px;
     width: 600px;
     position: relative;
-    margin: 50px 100px;
-}
-.dropdown {
-    position: relative;
-    display: inline-block;
-    margin: 50px 100px;
-    top: 100px;
-}
-
-.dropdown button {
-    background-color: #E4002B;
-    color: white;
-    padding: 15px 0px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    width: 600px; /* Cố định chiều rộng */
-    text-align: left; /* Căn trái cho nội dung */
-    position: relative;
-}
-
-/* Mũi tên hướng xuống mặc định */
-.dropdown button::before {
-    content: '▼';
-    position: absolute;
-    right: 10px;
-    font-size: 12px;
-    transition: transform 0.3s ease;
-}
-
-/* Khi mở dropdown, mũi tên sẽ hướng lên */
-.dropdown button.active::before {
-    content: '▲'; /* Mũi tên hướng lên */
-}
-
-.dropdown button span {
-    margin-left: 0px; /* Đẩy nội dung qua bên phải để không chèn vào mũi tên */
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #E4002B;
-    width: 600px;
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: white;
-    padding: 12px 0px;
-    text-decoration: none;
-    display: block;
-    cursor: pointer;
-}
-
-.dropdown-content a:hover {
-    background-color: #ddd;
 }
 
     </style>
 </head>
 <body>
-<div class="Title_Box">
-    <a>Xác nhận thông tin đơn hàng</a>
-</div>
-<div class="Name">
-    <input type="text" placeholder="Họ và tên">
-</div>
-<div class="Phone_Number">
-    <input type="text" placeholder="Số điện thoại">
-</div>
-<div class="Address">
-    <input type="text" placeholder="Địa chỉ">
-</div>
-<div class="dropdown">
-    <button onclick="toggleDropdown()" id="dropdownButton"><span>Đơn vị vận chuyển</span></button>
-    <div class="dropdown-content" id="dropdownMenu">
-        <a onclick="selectOption('GrabFood')">GrabFood</a>
-        <a onclick="selectOption('ShoppeFood')">ShoppeFood</a>
-        <a onclick="selectOption('BeFood')">BeFood</a>
+<form th:action="@{/StateOrder} " method="post">
+    <div class="Title_Box">
+        <a>Xác nhận thông tin đơn hàng</a>
     </div>
-</div>
-<div class="Message">
-    <input type="text" placeholder="Lời nhắn cho tài xế">
-</div>
-<div class="Confirm">
-    <a href="stateOrder.html">Xác nhận</a></div>
+    <div class="Name">
+        <input name="hoTen" type="text" placeholder="Họ và tên" required>
+    </div>
+    <div class="Phone_Number">
+        <input name="phoneNumber" type="text" placeholder="Số điện thoại" required>
+    </div>
+    <div class="Address">
+        <input name="address" type="text" placeholder="Địa chỉ" required>
+    </div>
+    <div  class="Delivery_Unit">
+        <select name="transport">
+            <option value="Shoppe">Shoppe Food</option>
+            <option value="Be Food">Be Food</option>
+            <option value="Grap Food">Grab Food</option>
+            <option value="0" selected="selected">Đơn vị vận chuyển</option>
+        </select>
+    </div>
+    <div  class="Payment_Method">
+        <select name="paymentMethod">
+            <option value="Chuyển khoản">Chuyển khoản</option>
+            <option value="Tiền mặt">Tiền mặt</option>
+            <option value="Phương thức thanh toán" selected="selected">Phương thức thanh toán</option>
+        </select>
+    </div>
+    <div  class="Message">
+        <input name="note" type="text" placeholder="Lời nhắn cho tài xế" required>
+    </div>
+    <div class="Confirm">
+        <button type="submit">xác nhận</button>
+    </div>
+</form>
 </body>
-<script>
-    function toggleDropdown() {
-    const dropdownMenu = document.getElementById("dropdownMenu");
-    const dropdownButton = document.getElementById("dropdownButton");
-
-    // Đổi trạng thái hiển thị của menu
-    dropdownMenu.style.display = (dropdownMenu.style.display === "block") ? "none" : "block";
-
-    // Thêm/xóa lớp 'active' để thay đổi hướng mũi tên
-    dropdownButton.classList.toggle("active");
-}
-
-function selectOption(option) {
-    const dropdownButton = document.getElementById("dropdownButton");
-    dropdownButton.querySelector("span").textContent = option;
-    document.getElementById("dropdownMenu").style.display = "none";
-
-    // Xóa lớp 'active' để mũi tên trở về hướng xuống sau khi chọn
-    dropdownButton.classList.remove("active");
-}
-
-window.onclick = function(event) {
-    if (!event.target.matches('#dropdownButton') && !event.target.matches('#dropdownButton span')) {
-        const dropdowns = document.getElementsByClassName("dropdown-content");
-        const dropdownButton = document.getElementById("dropdownButton");
-
-        for (let i = 0; i < dropdowns.length; i++) {
-            const openDropdown = dropdowns[i];
-            if (openDropdown.style.display === "block") {
-                openDropdown.style.display = "none";
-            }
-        }
-
-        // Xóa lớp 'active' khi click ra ngoài để mũi tên trở về hướng xuống
-        dropdownButton.classList.remove("active");
-    }
-}
-</script>
 </html>

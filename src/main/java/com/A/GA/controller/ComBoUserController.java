@@ -23,6 +23,8 @@ public class ComBoUserController {
         model.addAttribute("allComBo" , comBoUserService.getAllComBo());
         return "ComBoUser";
     }
+
+//    thanh tìm kiếm của trang combo
     @PostMapping("/searchBoxComBo")
     public String search(@RequestParam("searchBox") String searchBox, Model model ){
         model.addAttribute("allComBo", comBoUserService.searchBoxComBo(searchBox));

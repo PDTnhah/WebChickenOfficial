@@ -285,7 +285,7 @@ li{
     </div>
     <div class="nav">
         <p><a href="#"><h2>Danh mục sản phẩm</h2></a></p>
-        <p><a href="/AdminHomeComBo"><h2>Danh mục combo</h2></a></p>
+        <p><a href="/AdminHomeComBo"><h2>Order</h2></a></p>
         <p><a href="#"><h2>Doanh Thu</h2></a></p>
         <p><a href="#"><h2>Số Lượng Đã Bán</h2></a></p>
     </div>
@@ -298,8 +298,8 @@ li{
 
     <!--thanh tìm kiếm-->
     <form th:action="@{/searchBox}" method="POST">
-        <input class="search_box" name="searchBox" type="text" placeholder="Tìm kiếm sản phẩm..." required>
-        <button type="submit" class="additem"><a href="upload_image.html" target="_blank">Thêm sản phẩm</a></button>
+        <input class="search_box" name="searchBox" type="text" placeholder="Tìm kiếm sản phẩm...">
+        <button type="submit" class="additem"><a href="/addComBo" target="_blank">Thêm sản phẩm</a></button>
 
         <!--    <button type="submit" >ll</button>-->
     </form>

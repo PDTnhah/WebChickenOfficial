@@ -1,22 +1,34 @@
 package com.A.GA.Model;
 
+import com.A.GA.Repository.CustomerRepository;
+import com.A.GA.Repository.OrderRepository;
+
 public class AddressCustomer {
+    private static int maIdCount = CustomerRepository.tableCuntomer.size(); // tự động tăng id
     private int id;
     private String Name;
     private String phoneNumber;
     private String address;
     private String transport;
     private String note;
-    private int idProduct;
+    private String paymentMethod;
 
-    public AddressCustomer(int id, String name, String phoneNumber, String address, String transport, String note, int idProduct) {
-        this.id = id;
+    public AddressCustomer( String name, String phoneNumber, String address, String transport, String note, String paymentMethod) {
+        this.id = maIdCount++;
         Name = name;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.transport = transport;
         this.note = note;
-        this.idProduct = idProduct;
+        this.paymentMethod = paymentMethod;
+    }
+
+    public static int getMaIdCount() {
+        return maIdCount;
+    }
+
+    public static void setMaIdCount(int maIdCount) {
+        AddressCustomer.maIdCount = maIdCount;
     }
 
     public int getId() {
@@ -67,11 +79,11 @@ public class AddressCustomer {
         this.note = note;
     }
 
-    public int getIdProduct() {
-        return idProduct;
+    public String getPaymentMethod() {
+        return paymentMethod;
     }
 
-    public void setIdProduct(int idProduct) {
-        this.idProduct = idProduct;
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 }
