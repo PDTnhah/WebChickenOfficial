@@ -17,9 +17,9 @@ public class LoginRepository {
     public static final List<Login> tableLogin = new ArrayList<>();
 
     static {
-        tableLogin.add(new Login("tuyen", "123", "1"));
-        tableLogin.add(new Login("tuyen1", "1234", "2"));
-        tableLogin.add(new Login("tuyen2", "1236", "1"));
+        tableLogin.add(new Login(1,"tuyen", "123", "1"));
+        tableLogin.add(new Login(2,"tuyen1", "1234", "2"));
+        tableLogin.add(new Login(3,"tuyen2", "1236", "1"));
     }
 
     public Login checkLogin(String TKUser, String password, String role) {

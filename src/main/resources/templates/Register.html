@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <script src="https://kit.fontawesome.com/9a09c3b116.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+            background-color: #FAFAD2;
+        }
+        header {
+            background-color: red;
+            height: 40px;
+            width: 100%;
+            position: relative;
+            bottom: 8px;
+        }
+        header i {
+            color: white;
+            position: absolute;
+            right: 5px;
+            padding-top: 5px;
+            font-size: 30px;
+        }
+        header p {
+            width: 180px;
+            height: 180px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+            left: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        header img {
+            width: 120px;
+            height: 100px;
+            border-radius: 60%;
+        }
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .register {
+            width: 400px;
+            background-color: white;
+            padding: 50px 70px;
+            border: 2px solid black;
+            border-radius: 40px;
+        }
+        .register input, select {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px solid black;
+            font-size: 18px;
+        }
+        .register h1 {
+            text-align: center;
+        }
+        .register button {
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 40px;
+            padding: 10px;
+            background-color: transparent;
+            color: black;
+            border: 1.5px solid black;
+            width: 100%;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        .login-link a {
+            color: blue;
+            text-decoration: none;
+        }
+        .login-link a:hover {
+            color: red;
+        }
+        #errorMessage {
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <i class="fa-solid fa-user"></i>
+    <p>
+        <img th:src="'data:image/png;base64,' + ${Image}" alt="Image" />
+    </p>
+</header>
+<div class="wrapper">
+    <div class="register">
+        <form id="registerForm" >
+            <h1>REGISTER</h1>
+            <input type="text" id="registerUsername" name="username" placeholder="Username" required>
+            <input type="password" id="registerPassword" name="password" placeholder="Password" required>
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+            <select id="registerRole" name="role" required>
+                <option value="1">USER</option>
+                <option value="2">ADMIN</option>
+            </select>
+            <p id="errorMessage"></p>
+            <button type="submit">REGISTER</button>
+            <div class="login-link">
+                <p>Already have an account? <a href="/login/home">Log In</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById('registerForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const username = document.getElementById('registerUsername').value;
+        const password = document.getElementById('registerPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const role = document.getElementById('registerRole').value;
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Kiểm tra mật khẩu xác nhận
+        if (password !== confirmPassword) {
+            errorMessage.textContent = "Passwords do not match!";
+            return;
+        }
+
+        // Gửi yêu cầu đăng ký tới server
+        fetch('/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: username=${username}&password=${password}&role=${role}
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = '/login/home';
+            } else {
+                return response.text().then(err => { throw new Error(err); });
+            }
+        })
+        .catch(error => {
+            errorMessage.textContent = error.message;
+        });
+    });
+</script>
+</body>
+</html>

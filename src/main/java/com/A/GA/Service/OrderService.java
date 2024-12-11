@@ -3,6 +3,7 @@ package com.A.GA.Service;
 import com.A.GA.Model.AddressCustomer;
 import com.A.GA.Model.ComBo;
 import com.A.GA.Model.ProductChicken;
+import com.A.GA.Model.orderAdmin;
 import com.A.GA.Repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,16 @@ public class OrderService {
         return orderRepository.getByIdCustomer();
     }
 
-    public void addOrderAdmin(String hoten, double sumPrice, LocalDateTime timeNow, AddressCustomer addressCustomer, List<ProductChicken> tableOrder, List<ComBo> tableOrderComBo, String preparing) {
+    public void addOrderAdmin(int idUser,String hoten, double sumPrice, LocalDateTime timeNow, AddressCustomer addressCustomer, List<ProductChicken> tableOrder, List<ComBo> tableOrderComBo, String preparing) {
 
-        orderRepository.addOrderAdmin(hoten, sumPrice, timeNow,addressCustomer,tableOrder,tableOrderComBo,preparing);
+        orderRepository.addOrderAdmin(idUser,hoten, sumPrice, timeNow,addressCustomer,tableOrder,tableOrderComBo,preparing);
+    }
+
+    public orderAdmin getByIdOrder() {
+        return orderRepository.getByIdOrder();
+    }
+
+    public List<orderAdmin> getHistory(int idUser) {
+        return  orderRepository.getHistory(idUser);
     }
 }

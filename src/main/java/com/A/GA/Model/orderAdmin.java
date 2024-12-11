@@ -6,6 +6,7 @@ import java.util.List;
 public class orderAdmin {
     private static int maOrderCount = 0; // tự động tăng id
     private int maOrder;
+    private int idUser;
     private String nameCustomer;
     private double sumMoney;
     private LocalDateTime time;
@@ -14,8 +15,9 @@ public class orderAdmin {
     private  List<ComBo> products2 ;// Link nhiều sản phẩm combo
     private String status; // đây phải là 1 trường lựa trọn gồm các option ( đang chuẩn bị, đã giao cho ship)
 
-    public orderAdmin(String nameCustomer, double sumMoney, LocalDateTime time, AddressCustomer inforDetailed, List<ProductChicken> products1, List<ComBo> products2, String status) {
+    public orderAdmin(int idUser, String nameCustomer, double sumMoney, LocalDateTime time, AddressCustomer inforDetailed, List<ProductChicken> products1, List<ComBo> products2, String status) {
         this.maOrder = maOrderCount;
+        this.idUser=idUser;
         this.nameCustomer = nameCustomer;
         this.sumMoney = sumMoney;
         this.time = time;
@@ -30,6 +32,18 @@ public class orderAdmin {
 
     public static int getMaOrderCount() {
         return maOrderCount;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+
+    public void setSumMoney(double sumMoney) {
+        this.sumMoney = sumMoney;
     }
 
     public static void setMaOrderCount(int maOrderCount) {

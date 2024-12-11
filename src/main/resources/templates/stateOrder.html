@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -409,13 +409,21 @@ h1{
     <div class="step">
         <img src="/ImageSateOrder/Ordered.png" alt="Đơn đã đặt">
         <div>Đơn đã đặt</div>
-        <div class="time">20:00 13/10/2024</div>
+        <div class="time">
+            <div th:text="${date}">2024-12-11</div>
+            <div th:text="${time}">11:36:26</div>
+        </div>
+<!--        <div class="time" th:text = "${time}"></div>-->
     </div>
     <img src="/ImageSateOrder/Arrow.png">
     <div class="step">
         <img src="/ImageSateOrder/Payments.png" alt="Xác nhận thanh toán">
         <div>Đã xác nhận thông tin thanh toán</div>
-        <div class="time">20:05 13/10/2024</div>
+        <div class="time">
+            <div th:text="${date}">2024-12-11</div>
+            <div th:text="${time}">11:36:26</div>
+        </div>
+<!--        <div class="time" th:text = "${time}"></div>-->
     </div>
     <img src="/ImageSateOrder/Arrow.png">
     <div class="step">
