@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <script src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/jscrip.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/48c0283a22.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        *{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.tuyen {
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border: 1px solid black;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+    background-color: #f8f9f0;
+}
+.space{
+    margin:10px;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+
+}
+.formCard{
+    display:flex;
+    flex-direction: row;
+}
+.home{
+   display: block;
+   margin-top: 0;
+}
+.search_box{
+    margin-bottom: 50px;
+    width: 600px;
+    height: 60px;
+    border-radius: 15px;
+    font-size: 25px;
+    padding: 5px 100px 5px 20px;
+}
+header{
+    background-color: #E4002B;
+    height: 40px;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    display: block;
+}
+header i{
+    color: white;
+    padding: 5px;
+    font-size: 30px;
+    padding-left: 20px;
+    float: right;
+}
+.wrapper_1{
+    display:flex;
+    height: 100vh;
+    align-items: center;
+    flex-direction: column;
+    width: 300px;
+    background-color: #1A1A19;
+    float: left;
+    position: fixed;
+    top: 40px;
+}
+.wrapper_1 img{
+    width: 200px;
+    height: 180px;
+    border-radius: 60%;
+}
+.nav h2{
+    margin-top: 50px;
+}
+.nav a{
+    text-decoration: none;
+    color: white;
+}
+.nav a:hover{
+    background-color: #f8f9f0;
+    color:red;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.nav a:active{
+    background-color: #1A1A19;
+    color:white;
+    border-radius: 10px;
+    padding: 20px;
+}
+.item_img img{
+    width: 280px;
+    height: 200px;
+    margin-bottom: 10px;
+}
+.products{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.space:hover{
+    border: 2px solid red;
+    transform: scale(1.1);
+}
+.space{
+    padding: 10px;
+}
+button{
+    transition: 0.3s ease;
+}
+form{
+    margin-top: 20px;;
+}
+.formCard{
+    overflow: scroll;
+    margin-left: 290px;
+    overflow-x: hidden;
+}
+.tuyen h1,input{
+    margin-left: 300px;
+}
+li{
+    list-style-type: none;
+    padding: 10px;
+}
+.item_infor a{
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.item_infor a h2{
+    text-align: start;
+    padding-left: 15px;
+    color: rgba(0, 0, 0, 0.803);
+}
+.price{
+    margin-top: 15px;
+    text-align: start;
+    padding-left: 15px;
+    color: rgba(0, 0, 0, 0.455);
+}
+.icon{
+    text-align: end;
+}
+.icon i{
+    color: red;
+    font-size: 40px;
+}
+.upload_img{
+    margin-top: 50px;
+    float: right;
+}
+.additem{
+    margin-bottom: 50px;
+    width: 400px;
+    height: 50px;
+    border-radius: 15px;
+    font-size: 25px;
+    padding: 5px 100px 5px 20px;
+    margin-left: 10px;
+}
+.additem a{
+    margin-left: 67px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+.additem:hover{
+    transform: scale(1.07);
+}
+.select_list_item{
+    display: flex;
+    justify-content:center;
+}
+.tab_button{
+    font-size: 30px;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 15px;
+    transition: 0.3s ease;
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+}
+.tab_button:hover{
+    transform: scale(1.1);
+    background-color: red;
+    border-color: red;
+}
+.tab_button.active{
+    background-color: red;
+}
+.nav a{
+    padding: 20px;
+}
+.select a{
+    display: block;
+}
+
+.select {
+    display: none;
+    background-color: white;
+    border: 2px solid black;
+    padding: 5px;
+    position: fixed;
+    top: 40px;
+    right: 0px;
+}
+.button_select{
+    position: fixed;
+    right: 5px;
+}
+.button{
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    position: fixed;
+    right: 5px;
+    cursor: pointer;
+}
+.select a{
+    text-decoration: none;
+    cursor: pointer;
+    color:black;
+}
+.button:active{
+    opacity: 0.5;
+}
+.select a:hover{
+    background-color: rgba(128, 128, 128, 0.404);
+}
+.select a{
+    font-size: 17px;
+}
+.cart{
+    position: fixed;
+    right: 70px;
+}
+
+    </style>
+</head>
+
+<body>
+<!--<header>-->
+<!--    <a href="#"><i class="fa-solid fa-user"></i></a>-->
+<!--    <a href="#"><i class='bx bx-cart'></i></a>-->
+<!--</header>-->
+<header>
+    <div class="button_select">
+        <button class="button" id="button"><i class="fa-solid fa-user"></i></button>
+        <div class="select" id="selectLinks">
+            <a href="#">Thông tin khách hàng</a>
+            <a href="/login/home">Đăng xuất</a>
+        </div>
+    </div>
+    <a href="#" class="cart"><i class='bx bx-cart'></i></a>
+</header>
+<div class="wrapper_1">
+    <div class='image'>
+<!--        <img th:src="'data:image/png;base64,' + ${imageKongPhuong}" alt=" Image" /><br>-->
+        <img src="/ImageSateOrder/KongFuongChicken.jpeg">
+    </div>
+    <div class="nav">
+        <p><a href="/homeAdmin"><h2>Danh mục sản phẩm</h2></a></p>
+        <p><a href="#"><h2>Danh mục combo</h2></a></p>
+        <p><a href="#"><h2>Trạng thái đơn hàng</h2></a></p>
+        <p><a href="#"><h2>Lịch sử đặt hàng</h2></a></p>
+    </div>
+</div>
+
+
+<br><br>
+<div class="tuyen">
+    <h1 class="home">Kong Fuong Chicken</h1>
+
+    <!--thanh tìm kiếm-->
+    <form th:action="@{/searchBox}" method="POST">
+        <input class="search_box" name="searchBox" type="text" placeholder="Tìm kiếm ComBo..." required>
+
+        <!--    <button type="submit" >ll</button>-->
+    </form>
+    <!--thanh tìm kiếm-->
+
+    <!--home các sản phẩm-->
+    <div class ="formCard">
+        <th:block th:each="product : ${ListProduct}">
+
+            <div class="select_list_item">
+                <button type="submit" class="tab_button" onclick="showTab('combo_nhom')">COMBO NHÓM</button>
+                <button type="submit" class="tab_button" onclick="showTab('combo_1_nguoi')">COMBO 1 NGƯỜI</button>
+                <button type="submit" class="tab_button" onclick="showTab('combo_mon_moi')">COMBO MÓN MỚI</button>
+            </div>
+
+            <form th:action="@{/order/product/{id}(id=${product.getId()})}" method="post">
+                <ul class="products">
+                    <button class="space combo_nhom" type="submit" >
+                        <li class="item" >
+                            <div class="item_top">
+                                <a class="item_img" href="@{/order/product/{id}(id=${product.getId()})}">
+                                    <img src="https://st2.depositphotos.com/4029643/7155/i/950/depositphotos_71557231-stock-photo-portrait-of-the-lady-in.jpg" alt="anh 1">
+                                </a>
+                            </div>
+                            <div class="item_infor">
+                                <a href="@{/order/product/{id}(id=${product.getId()})}"><h2>cơm nanban</h2></a>
+                                <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="price">35.000đ</p></a>
+                                <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="icon"><i class="fas fa-plus-circle"></i></p></a>
+                            </div>
+                        </li>
+                    </button>
+                    <button class="space combo_1_nguoi" type="submit">
+                        <li class="item" >
+                            <div class="item_top">
+                                <a class="item_img" href="@{/order/product/{id}(id=${product.getId()})}">
+                                    <img src="https://st2.depositphotos.com/4029643/7155/i/950/depositphotos_71557231-stock-photo-portrait-of-the-lady-in.jpg" alt="anh 1">
+                                </a>
+                            </div>
+                            <div class="item_infor">
+                                <a href="@{/order/product/{id}(id=${product.getId()})}"><h2>cơm nanban</h2></a>
+                                <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="price">35.000đ</p></a>
+                                <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="icon"><i class="fas fa-plus-circle"></i></p></a>
+                            </div>
+                        </li>
+                    </button>
+                    <button class="space combo_mon_moi" type="submit">
+                        <li class="item" >
+                            <div class="item_top">
+                                <a class="item_img" href="@{/order/product/{id}(id=${product.getId()})}">
+                                    <img src="https://st2.depositphotos.com/4029643/7155/i/950/depositphotos_71557231-stock-photo-portrait-of-the-lady-in.jpg" alt="anh 1">
+                                </a>
+                            </div>
+                            <div class="item_infor">
+                                <a href="@{/order/product/{id}(id=${product.getId()})}"><h2>cơm nanban</h2></a>
+                                <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="price">35.000đ</p></a>
+                                <a href="@{/order/product/{id}(id=${product.getId()})}"><p class="icon"><i class="fas fa-plus-circle"></i></p></a>
+                            </div>
+                        </li>
+                    </button>
+                </ul>
+            </form>
+        </th:block>
+    </div>
+    <a href="/addComBo"> ADD ComBo</a>
+</div>
+
+</body>
+<script>
+    function showTab(category) {
+    // Ẩn tất cả sản phẩm trước
+    const allProducts = document.querySelectorAll('.space');
+    allProducts.forEach(product => {
+        product.style.display = 'none';
+    });
+
+    // Hiển thị các sản phẩm thuộc nhóm được chọn
+    const selectedProducts = document.querySelectorAll(`.${category}`);
+    selectedProducts.forEach(product => {
+        product.style.display = 'block';
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const button = document.getElementById('button')
+        const selectLinks = document.getElementById('selectLinks');
+
+        button.addEventListener('click', function() {
+            if (selectLinks.style.display === 'block') {
+                selectLinks.style.display = 'none';
+            } else {
+                selectLinks.style.display = 'block';
+            }
+        });
+    });
+}
+</script>
+
+</html>
