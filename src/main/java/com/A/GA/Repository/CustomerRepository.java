@@ -9,6 +9,6 @@ public class CustomerRepository {
     public static List<AddressCustomer> tableCuntomer = new ArrayList<>();
 
     public CustomerRepository() {
-        tableCuntomer.add(new AddressCustomer("tuyen","0353616131","yên phong","be", "thêm cơm","tiền mặt"));
+        tableCuntomer.add(new AddressCustomer(1,"tuyen","0353616131","yên phong","be", "thêm cơm","tiền mặt"));
     }
 }

@@ -24,21 +24,21 @@ public class orderController {
     @Autowired
     ProductRepository productRepository;
     @PostMapping("/StateOrder")
-    public RedirectView HomeStateOrder(RedirectAttributes redirectAttributes, HttpSession session, @RequestParam ("hoTen") String hoten,
+    public RedirectView HomeStateOrder( RedirectAttributes redirectAttributes, HttpSession session, @RequestParam ("hoTen") String hoten,
                                        @RequestParam("phoneNumber") String phoneNumber,
                                        @RequestParam("address") String address,
                                        @RequestParam("transport") String transport,
                                        @RequestParam ("paymentMethod") String paymentMethod,
                                        @RequestParam ("note") String note
                                  ){
-        orderService.addCustomerAdmin(hoten,phoneNumber,address,transport,paymentMethod,note);
-        AddressCustomer addressCustomer=  orderService.getByIdCustomer();
+        orderService.addCustomerAdmin((int)session.getAttribute("idUser"),hoten,phoneNumber,address,transport,paymentMethod,note);
+        AddressCustomer addressCustomer=  orderService.getByIdCustomer((int)session.getAttribute("idUser"));
         orderService.addOrderAdmin(addressCustomer.getId(),hoten, productRepository.sumProduct() , LocalDateTime.now(),addressCustomer,ProductRepository.tableOrder,ProductRepository.tableOrderComBo,"preparing");
         orderAdmin order = orderService.getByIdOrder();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 //        đưa dữ liệu vào session
-//        session.setAttribute("order", order);
+        session.setAttribute("maOder", order.getMaOrder());
 
 // Tách riêng ngày và giờ
         String date = order.getTime().toLocalDate().format(dateFormatter);
@@ -54,7 +54,8 @@ public class orderController {
     @GetMapping("/History")
     public String historyOrder (Model model,HttpSession session){
         int idUser = (int)session.getAttribute("idUser");
-        model.addAttribute("ListHistoty", orderService.getHistory(idUser));
+        int maOrder = (int)session.getAttribute("maOrder");
+        model.addAttribute("ListHistoty", orderService.getHistory(idUser, maOrder ));
         return "historyOrder";
     }
 

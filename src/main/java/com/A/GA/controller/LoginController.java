@@ -48,6 +48,7 @@ public class LoginController {
                 return ResponseEntity.ok("user");  // Trả về "user" nếu vai trò là "user"
             }
             if (role.equals("2") && checkLogin.getRole().equals("2")) {
+                session.setAttribute("idUser", checkLogin.getIdUser());
                 return ResponseEntity.ok("admin");  // Trả về "admin" nếu vai trò là "admin"
             }
         }

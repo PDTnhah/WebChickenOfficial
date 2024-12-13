@@ -23,6 +23,16 @@ public class AddressCustomer {
         this.paymentMethod = paymentMethod;
     }
 
+    public AddressCustomer(int id, String name, String phoneNumber, String address, String transport, String note, String paymentMethod) {
+        this.id = id;
+        Name = name;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.transport = transport;
+        this.note = note;
+        this.paymentMethod = paymentMethod;
+    }
+
     public static int getMaIdCount() {
         return maIdCount;
     }

@@ -7,6 +7,7 @@ import java.io.IOException;
 
 public class ProductChicken {
     private int id;
+    private int idUser;
     private String nameProduct;
     private String category;
     private double price;

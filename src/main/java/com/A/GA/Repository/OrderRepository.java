@@ -18,23 +18,24 @@ public class OrderRepository {
     public static List<orderAdmin> tableOrderAdmin = new ArrayList<>();
     public OrderRepository() {
         // tạo sẵn các sản phẩm
-        tableProduct.add( new ProductChicken(0,"Burger Zinger" , "chiên" , 1000,tableImage.get(0)));
-        tableProduct.add( new ProductChicken(1,"Burger Tôm" , "chiên" , 2000,tableImage.get(1)));
-        tableProduct.add( new ProductChicken(2,"Burger Gà Quay Flava" , "hấp" , 2000,tableImage.get(2)));
-        tableProduct.add( new ProductChicken(3,"Cơm Phi-lê Gà Quay" , "hấp" , 2000,tableImage.get(3)));
-        tableProduct.add( new ProductChicken(4,"Com Gà Teriyaki" , "hấp" , 2000,tableImage.get(4)));
-        tableProduct.add( new ProductChicken(5,"Mì Ý Gà Viên" , "hấp" , 2000,tableImage.get(5)));
-
-//            tạo sẳn ở order
-        tableOrder.add(new ProductChicken(1,"gà chiên", "chiên",1000,tableImage.get(1)));
+          tableOrderAdmin.add( new orderAdmin(1, "trần thanh hằng", 1000,LocalDateTime.now(), getByIdCustomer(1),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare"));
+          tableOrderAdmin.add( new orderAdmin(3, "trần thanh hằng", 3000,LocalDateTime.now(), getByIdCustomer(1),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare"));
+//        tableProduct.add( new ProductChicken(1,"Burger Tôm" , "chiên" , 2000,tableImage.get(1)));
+//        tableProduct.add( new ProductChicken(2,"Burger Gà Quay Flava" , "hấp" , 2000,tableImage.get(2)));
+//        tableProduct.add( new ProductChicken(3,"Cơm Phi-lê Gà Quay" , "hấp" , 2000,tableImage.get(3)));
+//        tableProduct.add( new ProductChicken(4,"Com Gà Teriyaki" , "hấp" , 2000,tableImage.get(4)));
+//        tableProduct.add( new ProductChicken(5,"Mì Ý Gà Viên" , "hấp" , 2000,tableImage.get(5)));
+//
+////            tạo sẳn ở order
+//        tableOrder.add(new ProductChicken(1,"gà chiên", "chiên",1000,tableImage.get(1)));
     }
-    public void addCustomerAdmon(String hoten, String phoneNumber, String address, String transport, String paymentMethod, String note) {
-        AddressCustomer newCustomer = new AddressCustomer(hoten,phoneNumber,address,transport,note,paymentMethod);
+    public void addCustomerAdmon(int id,String hoten, String phoneNumber, String address, String transport, String paymentMethod, String note) {
+        AddressCustomer newCustomer = new AddressCustomer(id,hoten,phoneNumber,address,transport,note,paymentMethod);
         CustomerRepository.tableCuntomer.add(newCustomer);
-        idOfCustomer = newCustomer.getId();
+        idOfCustomer = id;
     }
 
-    public AddressCustomer getByIdCustomer() {
+    public AddressCustomer getByIdCustomer(int id) {
         for (AddressCustomer addressCustomer : CustomerRepository.tableCuntomer){
             if (addressCustomer.getId() == idOfCustomer){
                 return addressCustomer;
@@ -58,10 +59,10 @@ public class OrderRepository {
     }
 
 
-    public List<orderAdmin> getHistory(int idUser) {
+    public List<orderAdmin> getHistory(int idUser, int maOrder) {
         List<orderAdmin> orderAdminHistory = new ArrayList<>();
         for (orderAdmin orderAdmin: tableOrderAdmin){
-            if (orderAdmin.getIdUser() == idUser){
+            if (orderAdmin.getIdUser() == idUser && orderAdmin.getMaOrder() == maOrder){
                 orderAdminHistory.add(orderAdmin);
             }
         }

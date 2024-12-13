@@ -283,17 +283,16 @@
 </header>
 <div class="wrapper_1">
     <div class='image'>
-        <img
-                src="https://st2.depositphotos.com/4029643/7155/i/950/depositphotos_71557231-stock-photo-portrait-of-the-lady-in.jpg">
+        <img src="/ImageSateOrder/KongFuongChicken.jpeg">
     </div>
     <div class="nav">
-        <p><a href="#">
+        <p><a href="/homeUser">
             <h2>Danh mục sản phẩm</h2>
         </a></p>
-        <p><a href="#">
+        <p><a href="/UserHomeComBo">
             <h2>Danh mục combo</h2>
         </a></p>
-        <p><a href="#">
+        <p><a href="/stateOrder1    ">
             <h2>Trạng thái đơn hàng</h2>
         </a></p>
         <p><a href="#">
@@ -354,9 +353,9 @@
                                             th:text="${product2.getNameComBo()}"></li>
                                     </ul>
                                 </td>
-                                <td th:text = "${productHis.Time()}">2024-12-10 14:00</td>
+                                <td th:text = "${productHis.getTime()}">2024-12-10 14:00</td>
                                 <td >Đã giao</td>
-                                <td th:text = "${productHis.SumMoney()}">500,000 VNĐ</td>
+                                <td th:text = "${productHis.getSumMoney()}">500,000 VNĐ</td>
                             </tr>
                         </th:block>
                     </tbody>

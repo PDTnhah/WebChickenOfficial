@@ -16,12 +16,12 @@ public class OrderService {
     @Autowired
     OrderRepository orderRepository;
 
-    public void addCustomerAdmin(String hoten, String phoneNumber, String address, String transport, String paymentMethod, String note) {
-        orderRepository.addCustomerAdmon(hoten,phoneNumber,address,transport,paymentMethod,note);
+    public void addCustomerAdmin(int id,String hoten, String phoneNumber, String address, String transport, String paymentMethod, String note) {
+        orderRepository.addCustomerAdmon(id,hoten,phoneNumber,address,transport,paymentMethod,note);
     }
 
-    public AddressCustomer getByIdCustomer() {
-        return orderRepository.getByIdCustomer();
+    public AddressCustomer getByIdCustomer(int id) {
+        return orderRepository.getByIdCustomer(id);
     }
 
     public void addOrderAdmin(int idUser,String hoten, double sumPrice, LocalDateTime timeNow, AddressCustomer addressCustomer, List<ProductChicken> tableOrder, List<ComBo> tableOrderComBo, String preparing) {
@@ -33,7 +33,7 @@ public class OrderService {
         return orderRepository.getByIdOrder();
     }
 
-    public List<orderAdmin> getHistory(int idUser) {
-        return  orderRepository.getHistory(idUser);
+    public List<orderAdmin> getHistory(int idUser, int maOrder) {
+        return  orderRepository.getHistory(idUser, maOrder);
     }
 }
