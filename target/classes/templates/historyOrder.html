@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <script src="script.js"></script>
+    <meta charset="UTF-8">
+    <title>OrderHistory</title>
+    <script src="/jscrip.js"></script>
+    <script src="https://kit.fontawesome.com/48c0283a22.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/jscrip.js"></script>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            font-family: "time New Roman";
+        }
+
+        .tuyen {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            border: 1px solid black;
+            height: 100vh;
+            margin-top: 0px;
+            flex-direction: column;
+            background-color: #f8f9f0;
+            /* position: fixed;
+            top: 0px; */
+        }
+
+        .search_box {
+            margin-bottom: 50px;
+            width: 600px;
+            height: 60px;
+            border-radius: 15px;
+            font-size: 25px;
+            padding: 5px 100px 5px 20px;
+        }
+
+        header {
+            background-color: #E4002B;
+            height: 40px;
+            width: 100%;
+            position: fixed;
+            top: 0px;
+            display: block;
+        }
+
+        header i {
+            color: white;
+            padding: 5px;
+            font-size: 30px;
+            padding-left: 20px;
+
+        }
+
+        .wrapper_1 {
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            flex-direction: column;
+            width: 300px;
+            background-color: #1A1A19;
+            float: left;
+            position: fixed;
+            top: 40px;
+        }
+
+        .wrapper_1 img {
+            width: 200px;
+            height: 180px;
+            border-radius: 60%;
+        }
+
+        .nav h2 {
+            margin-top: 50px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav a:hover {
+            background-color: #f8f9f0;
+            color: red;
+            border-radius: 10px;
+
+        }
+
+        .nav a:active {
+            background-color: #1A1A19;
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .item_img img {
+            width: 280px;
+            height: 200px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            transition: 0.3s ease;
+        }
+
+        form {
+            margin-top: 20px;
+            ;
+        }
+
+        .tuyen h1,
+        input {
+            margin-left: 300px;
+        }
+
+        li {
+            list-style-type: none;
+            padding: 10px;
+        }
+
+        .item_infor a {
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .item_infor a h2 {
+            text-align: start;
+            padding-left: 15px;
+            color: rgba(0, 0, 0, 0.803);
+        }
+
+        .icon i {
+            color: red;
+            font-size: 40px;
+        }
+
+        .nav a {
+            padding: 20px;
+        }
+
+        .select a {
+            display: block;
+        }
+
+        .select {
+            display: none;
+            background-color: white;
+            border: 2px solid black;
+            padding: 5px;
+            position: fixed;
+            top: 40px;
+            right: 0px;
+        }
+
+        .button_select {
+            position: fixed;
+            right: 5px;
+        }
+
+        .button {
+            height: 40px;
+            background-color: transparent;
+            border: none;
+            position: fixed;
+            right: 5px;
+            cursor: pointer;
+        }
+
+        .select a {
+            text-decoration: none;
+            cursor: pointer;
+            color: black;
+        }
+
+        .button:active {
+            opacity: 0.5;
+        }
+
+        .select a:hover {
+            background-color: rgba(128, 128, 128, 0.404);
+        }
+
+        .select a {
+            font-size: 17px;
+        }
+
+        .cart {
+            position: fixed;
+            right: 70px;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Order History */
+        .order-history {
+            padding: 20px;
+            color: #a61018;
+        }
+
+        .order-history h2 {
+            margin-bottom: 20px;
+        }
+
+        .order-history select,
+        .order-history input {
+            padding: 8px;
+            margin: 0 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        /* Table */
+        .table-container {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 10px;
+            padding-right: 150px;
+            padding-bottom: 300px;
+            margin-top: 20px;
+        }
+
+        table {
+            margin: 20px auto;
+            width: 100%;
+            /* Đặt bảng chiếm toàn bộ chiều rộng */
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            color: #a61018;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+        td:first-child {
+            width: 50px;
+            /* Đặt chiều rộng cố định cho cột STT */
+        }
+
+        td:nth-child(2) {
+            width: 300px;
+            /* Đặt chiều rộng cố định cho cột Tên sản phẩm */
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const tableRows = document.querySelectorAll("tbody tr");
+
+            // Duyệt qua các hàng và thêm số thứ tự
+            tableRows.forEach((row, index) => {
+                const sttCell = row.cells[0]; // Ô đầu tiên (STT)
+                sttCell.textContent = index + 1; // Đánh số thứ tự, bắt đầu từ 1
+            });
+        });
+    </script>
+</head>
+
+<body>
+<header>
+    <div class="button_select">
+        <button class="button" id="button"><i class="fa-solid fa-user"></i></button>
+        <div class="select" id="selectLinks">
+            <a href="#">Thông tin khách hàng</a>
+            <a href="#">Đăng xuất</a>
+        </div>
+    </div>
+    <a href="#" class="cart"><i class='bx bx-cart'></i></a>
+</header>
+<div class="wrapper_1">
+    <div class='image'>
+        <img src="/ImageSateOrder/KongFuongChicken.jpeg">
+    </div>
+    <div class="nav">
+        <p><a href="/homeUser">
+            <h2>Danh mục sản phẩm</h2>
+        </a></p>
+        <p><a href="/UserHomeComBo">
+            <h2>Danh mục combo</h2>
+        </a></p>
+        <p><a href="/stateOrder1    ">
+            <h2>Trạng thái đơn hàng</h2>
+        </a></p>
+        <p><a href="#">
+            <h2>Lịch sử đặt hàng</h2>
+        </a></p>
+    </div>
+</div>
+<br></br>
+<div class="tuyen">
+    <!--thanh tìm kiếm-->
+    <!--    <form th:action="@{/searchBox}" method="POST">-->
+    <!--        <input class="search_box" name="searchBox" type="text" placeholder="Tìm kiếm sản phẩm..." required>-->
+
+    <!--        &lt;!&ndash;    <button type="submit" >ll</button>&ndash;&gt;-->
+    <!--    </form>-->
+    <!--thanh tìm kiếm-->
+    <div class="main-content">
+
+        <!-- Order History -->
+        <div class="order-history">
+            <div>
+                <label><b>Trạng thái</b></label>
+                <select>
+                    <option>All</option>
+                    <!-- More options as needed -->
+                </select>
+                <label><b>Từ ngày</b></label>
+                <input type="date">
+                <label><b>Đến ngày</b></label>
+                <input type="date">
+                <button> tìm kiếm</button>
+            </div>
+
+            <!-- Order History Table -->
+            <div class="table-container">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Thời gian</th>
+                        <th>Trạng thái</th>
+                        <th>Tổng tiền</th>
+                    </tr>
+                    </thead>
+                    <tbody id="productTable">
+                        <th:block th:each="productHis : ${ListHistoty}">
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <ul>
+                                        <!-- Lặp qua các sản phẩm từ mảng getProducts1 -->
+                                        <li th:each="product1 : ${productHis.getProducts1}"
+                                            th:text="${product1.getNameProduct()}"></li>
+
+                                        <!-- Lặp qua các sản phẩm từ mảng getProducts2 -->
+                                        <li th:each="product2 : ${productHis.getProducts2}"
+                                            th:text="${product2.getNameComBo()}"></li>
+                                    </ul>
+                                </td>
+                                <td th:text = "${productHis.getTime()}">2024-12-10 14:00</td>
+                                <td >Đã giao</td>
+                                <td th:text = "${productHis.getSumMoney()}">500,000 VNĐ</td>
+                            </tr>
+                        </th:block>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+
+</html>
