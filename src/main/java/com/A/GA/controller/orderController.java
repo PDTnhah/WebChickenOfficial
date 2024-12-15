@@ -1,9 +1,12 @@
 package com.A.GA.controller;
 
 import com.A.GA.Model.AddressCustomer;
+import com.A.GA.Model.ComBo;
+import com.A.GA.Model.ProductChicken;
 import com.A.GA.Model.orderAdmin;
 import com.A.GA.Repository.ProductRepository;
 import com.A.GA.Service.OrderService;
+import com.A.GA.Service.StoreService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class orderController {
@@ -23,6 +28,9 @@ public class orderController {
     OrderService orderService;
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    StoreService storeService;
     @PostMapping("/StateOrder")
     public RedirectView HomeStateOrder( RedirectAttributes redirectAttributes, HttpSession session, @RequestParam ("hoTen") String hoten,
                                        @RequestParam("phoneNumber") String phoneNumber,
@@ -31,14 +39,20 @@ public class orderController {
                                        @RequestParam ("paymentMethod") String paymentMethod,
                                        @RequestParam ("note") String note
                                  ){
-        orderService.addCustomerAdmin((int)session.getAttribute("idUser"),hoten,phoneNumber,address,transport,paymentMethod,note);
-        AddressCustomer addressCustomer=  orderService.getByIdCustomer((int)session.getAttribute("idUser"));
-        orderService.addOrderAdmin(addressCustomer.getId(),hoten, productRepository.sumProduct() , LocalDateTime.now(),addressCustomer,ProductRepository.tableOrder,ProductRepository.tableOrderComBo,"preparing");
+        int idUser = (int)session.getAttribute("idUser");
+        orderService.addCustomerAdmin(idUser,hoten,phoneNumber,address,transport,paymentMethod,note);
+        AddressCustomer addressCustomer=  orderService.getByIdCustomer(idUser);
+//        int maStore = storeService.getMaStore(idUserCurrent);
+        int maStore = storeService.getMaStore(UserController.IDPRODUCT);
+        // sao lưu tất cả giá trị sang bảng mới mà k phải sao lưu tham chiều
+        List<ProductChicken> productTamThoi = new ArrayList<>(ProductRepository.tableOrder);
+        List<ComBo> comBoTamThoi = new ArrayList<>(ProductRepository.tableOrderComBo);
+        orderService.addOrderAdmin(addressCustomer.getId(),hoten, productRepository.sumProduct() , LocalDateTime.now(),addressCustomer,productTamThoi,comBoTamThoi,"preparing",maStore);
+        productRepository.removeAllProductTemporary();
+        productRepository.reomoveAllComBoTemporary();
         orderAdmin order = orderService.getByIdOrder();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-//        đưa dữ liệu vào session
-        session.setAttribute("maOder", order.getMaOrder());
 
 // Tách riêng ngày và giờ
         String date = order.getTime().toLocalDate().format(dateFormatter);
@@ -54,8 +68,7 @@ public class orderController {
     @GetMapping("/History")
     public String historyOrder (Model model,HttpSession session){
         int idUser = (int)session.getAttribute("idUser");
-        int maOrder = (int)session.getAttribute("maOrder");
-        model.addAttribute("ListHistoty", orderService.getHistory(idUser, maOrder ));
+        model.addAttribute("ListHistoty", orderService.getHistory(idUser));
         return "historyOrder";
     }
 

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách đơn hàng</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+
+        table {
+            width: 100%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        .filter-container {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .filter-container input,
+        .filter-container select,
+        .filter-container button {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .filter-container button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Modal styles */
+        #customerDetailModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        #customerDetailModal .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 5px;
+            width: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            text-align: left;
+        }
+
+        #customerDetailModal .modal-content h2 {
+            margin-top: 0;
+        }
+
+        #customerDetailModal .modal-content button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #customerDetailModal .modal-content button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+<div class="filter-container">
+    <input type="text" placeholder="Mã đơn hàng, Tên khách hàng, Số điện thoại">
+    <select>
+        <option value="new">Đơn mới</option>
+        <option value="processing">Đang xử lý</option>
+        <option value="ready">Đơn sẵn sàng giao</option>
+        <option value="completed">Đơn đã hoàn thành</option>
+        <option value="cancelled">Đơn đã hủy</option>
+    </select>
+    <button>Tìm kiếm</button>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>Mã Order</th>
+        <th>Tên Khách Hàng</th>
+        <th>Tổng Tiền</th>
+        <th>Thời Gian</th>
+        <th>Địa Chỉ Giao Hàng</th>
+        <th>Sản Phẩm</th>
+        <th>Trạng Thái</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Dữ liệu được lặp từ backend -->
+    <tr th:each="order : ${ListOrder}">
+        <td th:text="${order.getMaOrder()}"></td>
+        <td th:text="${order.getNameCustomer()}"></td>
+        <td th:text="${order.getSumMoney()}"></td>
+        <td th:text="${order.getTime()}"></td>
+        <td>
+            <button type="button" class="btn" onclick="showCustomerDetail(
+                '[[${order.getInforDetailed().getName()}]]',
+                '[[${order.getInforDetailed().getPhoneNumber()}]]',
+                '[[${order.getInforDetailed().getAddress()}]]',
+                '[[${order.getInforDetailed().getTransport()}]]',
+                '[[${order.getInforDetailed().getPaymentMethod()}]]',
+                '[[${order.getInforDetailed().getNote()}]]'
+            )">Thông tin chi tiết</button>
+        </td>
+<!--        <td>-->
+<!--            <button type="button" class="btn" onclick="showCustomerDetail()">Thông tin chi tiết</button>-->
+<!--        </td>-->
+
+        <td>
+            <ul>
+                <li th:each="product1 : ${order.getProducts1}" th:text="${product1.getNameProduct()}"></li>
+                <li th:each="product2 : ${order.getProducts2}" th:text="${product2.getNameComBo()}"></li>
+            </ul>
+        </td>
+        <td>
+            <select>
+                <option value="preparing" th:selected="${order.status == 'preparing'}">Đang chuẩn bị</option>
+                <option value="shipped" th:selected="${order.status == 'shipped'}">Đã giao cho ship</option>
+            </select>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Modal hiển thị thông tin chi tiết khách hàng -->
+<div id="customerDetailModal">
+    <div class="modal-content">
+        <h2>Thông tin chi tiết khách hàng</h2>
+        <p><strong>Tên:</strong> <span id="customerName"></span></p>
+        <p><strong>Số điện thoại:</strong> <span id="customerPhone"></span></p>
+        <p><strong>Địa chỉ:</strong> <span id="customerAddress"></span></p>
+        <p><strong>Phương thức vận chuyển:</strong> <span id="customerTransport"></span></p>
+        <p><strong>Phương thức thanh toán:</strong> <span id="customerPaymentMethod"></span></p>
+        <p><strong>Ghi chú:</strong> <span id="customerNote"></span></p>
+        <button onclick="closeModal()">Đóng</button>
+    </div>
+</div>
+
+<script>
+    function showCustomerDetail(name, phone, address, transport, paymentMethod, note) {
+        document.getElementById("customerName").innerText = name;
+        document.getElementById("customerPhone").innerText = phone;
+        document.getElementById("customerAddress").innerText = address;
+        document.getElementById("customerTransport").innerText = transport;
+        document.getElementById("customerPaymentMethod").innerText = paymentMethod;
+        document.getElementById("customerNote").innerText = note;
+
+        document.getElementById("customerDetailModal").style.display = 'block';
+    }
+
+
+<!--    function showCustomerDetail() {-->
+<!--    var name = 'Test Name';-->
+<!--    var phone = '123456789';-->
+<!--    var address = '123 Test St';-->
+<!--    var transport = 'Delivery';-->
+<!--    var paymentMethod = 'Credit Card';-->
+<!--    var note = 'No notes';-->
+
+<!--    document.getElementById("customerName").innerText = name;-->
+<!--    document.getElementById("customerPhone").innerText = phone;-->
+<!--    document.getElementById("customerAddress").innerText = address;-->
+<!--    document.getElementById("customerTransport").innerText = transport;-->
+<!--    document.getElementById("customerPaymentMethod").innerText = paymentMethod;-->
+<!--    document.getElementById("customerNote").innerText = note;-->
+
+<!--    document.getElementById("customerDetailModal").style.display = 'block';-->
+<!--}-->
+    function closeModal() {
+        document.getElementById("customerDetailModal").style.display = 'none';
+    }
+</script>
+
+</body>
+
+</html>

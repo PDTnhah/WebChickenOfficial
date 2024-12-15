@@ -9,6 +9,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 public class UserController {
+    //     lưu tạm thời id của sản phẩm khi người dùng nhấn chọn vào đây đang sử dụng trường hợp mk đang thao tác với 1 cửa hàng
+    public static int IDPRODUCT =0 ;
     @Autowired
     private ProductService serviceProduct;
     // đưa toàn bộ sản phẩm ra ngoài màn hình home
@@ -33,6 +35,7 @@ public class UserController {
     @PostMapping("/order/product/{id}")
     public RedirectView order(@PathVariable("id") int id){
         serviceProduct.addOrderProduct(id);
+        IDPRODUCT = id;
         return  new RedirectView("/order/product/get");
     }
 

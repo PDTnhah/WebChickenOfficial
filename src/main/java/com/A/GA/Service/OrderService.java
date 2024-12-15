@@ -24,16 +24,16 @@ public class OrderService {
         return orderRepository.getByIdCustomer(id);
     }
 
-    public void addOrderAdmin(int idUser,String hoten, double sumPrice, LocalDateTime timeNow, AddressCustomer addressCustomer, List<ProductChicken> tableOrder, List<ComBo> tableOrderComBo, String preparing) {
+    public void addOrderAdmin(int idUser,String hoten, double sumPrice, LocalDateTime timeNow, AddressCustomer addressCustomer, List<ProductChicken> tableOrder, List<ComBo> tableOrderComBo, String preparing, int maStore) {
 
-        orderRepository.addOrderAdmin(idUser,hoten, sumPrice, timeNow,addressCustomer,tableOrder,tableOrderComBo,preparing);
+        orderRepository.addOrderAdmin(idUser,hoten, sumPrice, timeNow,addressCustomer,tableOrder,tableOrderComBo,preparing,maStore);
     }
 
     public orderAdmin getByIdOrder() {
         return orderRepository.getByIdOrder();
     }
 
-    public List<orderAdmin> getHistory(int idUser, int maOrder) {
-        return  orderRepository.getHistory(idUser, maOrder);
+    public List<orderAdmin> getHistory(int idUser) {
+        return  orderRepository.getHistory(idUser);
     }
 }

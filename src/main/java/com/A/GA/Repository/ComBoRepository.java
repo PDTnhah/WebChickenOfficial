@@ -59,11 +59,11 @@ public class ComBoRepository {
     }
     public ComBoRepository() {
         arrayImage(imageComBo);
-        tableComBo.add(new ComBo("Com Bô Nhóm 2",4007,tableImage.get(0),"3 miếng gà +1 lát phô mai","newMeal"));
-        tableComBo.add(new ComBo("Com Bô Nhóm 2",4003,tableImage.get(1),"3 miếng gà +1 lát phô mai","group"));
-        tableComBo.add(new ComBo("Com Bô Nhóm 3",4010,tableImage.get(2),"3 miếng gà +1 lát phô mai","one"));
-        tableComBo.add(new ComBo("Com Bô Nhóm 1",4003,tableImage.get(3),"3 miếng gà +1 lát phô mai","group"));
-        tableComBo.add(new ComBo("Com Bô Nhóm 4",4056,tableImage.get(4),"3 miếng gà +1 lát phô mai","newMeal"));
+        tableComBo.add(new ComBo("Com Bô Nhóm 2",4007,tableImage.get(0),"3 miếng gà +1 lát phô mai","newMeal",1));
+        tableComBo.add(new ComBo("Com Bô Nhóm 2",4003,tableImage.get(1),"3 miếng gà +1 lát phô mai","group",1));
+        tableComBo.add(new ComBo("Com Bô Nhóm 3",4010,tableImage.get(2),"3 miếng gà +1 lát phô mai","one",1));
+        tableComBo.add(new ComBo("Com Bô Nhóm 1",4003,tableImage.get(3),"3 miếng gà +1 lát phô mai","group",1));
+        tableComBo.add(new ComBo("Com Bô Nhóm 4",4056,tableImage.get(4),"3 miếng gà +1 lát phô mai","newMeal",1));
 
     }
 
@@ -71,8 +71,8 @@ public class ComBoRepository {
         return tableComBo;
     }
 
-    public void addComBo(String nameComBo, int price, String category, String describe, String file) {
-        ComBo newComBo= new ComBo(nameComBo,price,file,describe,category);
+    public void addComBo(String nameComBo, int price, String category, String describe, String file, int maStore) {
+        ComBo newComBo= new ComBo(nameComBo,price,file,describe,category,maStore);
         tableComBo.add(newComBo);
     }
 
@@ -82,4 +82,25 @@ public class ComBoRepository {
                 .filter(product -> product.getNameComBo().toLowerCase().contains(lowerCaseKeyword))
                 .collect(Collectors.toList());
     }
+
+    public List<ComBo> getAllComBoAdmin(int maStore) {
+        List<ComBo> ListComBoOfOneProduct = new ArrayList<>();
+        for (ComBo comBo:tableComBo){
+            if (comBo.getMaStore() == maStore){
+                ListComBoOfOneProduct.add(comBo);
+            }
+        }
+        return ListComBoOfOneProduct;
+    }
+
+    public List<ComBo> searchBoxHomeAdmin(String searchBox, int maStore) {
+        String lowerCaseKeyword = searchBox.toLowerCase();
+
+        // Dùng stream để kết hợp cả 2 điều kiện
+        return tableComBo.stream()
+                .filter(comBo -> comBo.getMaStore() == maStore) // Lọc theo mã cửa hàng
+                .filter(comBo -> comBo.getNameComBo().toLowerCase().contains(lowerCaseKeyword)) // Lọc theo từ khóa
+                .collect(Collectors.toList());
+    }
+
 }

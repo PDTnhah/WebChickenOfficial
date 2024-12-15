@@ -36,12 +36,12 @@
         public ProductRepository() {
             arrayImage(folderImage  );
             // tạo sẵn các sản phẩm
-            tableProduct.add( new ProductChicken(0,"Burger Zinger" , "chiên" , 1000,tableImage.get(0)));
-            tableProduct.add( new ProductChicken(1,"Burger Tôm" , "chiên" , 2000,tableImage.get(1)));
-            tableProduct.add( new ProductChicken(2,"Burger Gà Quay Flava" , "hấp" , 2000,tableImage.get(2)));
-            tableProduct.add( new ProductChicken(3,"Cơm Phi-lê Gà Quay" , "hấp" , 2000,tableImage.get(3)));
-            tableProduct.add( new ProductChicken(4,"Com Gà Teriyaki" , "hấp" , 2000,tableImage.get(4)));
-            tableProduct.add( new ProductChicken(5,"Mì Ý Gà Viên" , "hấp" , 2000,tableImage.get(5)));
+            tableProduct.add( new ProductChicken(0,"Burger Zinger" , "chiên" , 1000,tableImage.get(0),1));
+            tableProduct.add( new ProductChicken(1,"Burger Tôm" , "chiên" , 2000,tableImage.get(1),1));
+            tableProduct.add( new ProductChicken(2,"Burger Gà Quay Flava" , "hấp" , 2000,tableImage.get(2),1));
+            tableProduct.add( new ProductChicken(3,"Cơm Phi-lê Gà Quay" , "hấp" , 2000,tableImage.get(3),1));
+            tableProduct.add( new ProductChicken(4,"Com Gà Teriyaki" , "hấp" , 2000,tableImage.get(4),1));
+            tableProduct.add( new ProductChicken(5,"Mì Ý Gà Viên" , "hấp" , 2000,tableImage.get(5),1));
 
 //            tạo sẳn ở order
             tableOrder.add(new ProductChicken(1,"gà chiên", "chiên",1000,tableImage.get(1)));
@@ -81,7 +81,18 @@
 
 
         }
-    // tìm kiếm sản phẩm bằng id
+
+//        public static int getMaStore(int idproduct) {
+//            for (ProductChicken productChicken:tableProduct){
+//                if (productChicken.getId() == idproduct){
+//                    return productChicken.getMaStore();
+//                }
+//            }
+//            System.out.println("không tìm thấy mã cửa hàng tương ứng với sản phẩm");
+//            return 0;
+//        }
+
+        // tìm kiếm sản phẩm bằng id
         public ProductChicken getByIdProduct(int id) {
             for (ProductChicken productChicken : tableProduct){
                 if (productChicken.getId() == id){
@@ -183,5 +194,36 @@
 
             return base64Image;
         }
+
+        public void removeAllProductTemporary() {
+            tableOrder.clear();
+        }
+
+        public void reomoveAllComBoTemporary() {
+            tableOrderComBo.clear();
+        }
+
+        // lấy toàn bộ sản phẩm thuộc 1 của hàng
+        public List<ProductChicken> getALLProductAdmin(int maStore) {
+            List<ProductChicken> listProductOfOneStore = new ArrayList<>();
+            for (ProductChicken productChicken : tableProduct){
+                if (productChicken.getMaStore() == maStore){
+                    listProductOfOneStore.add(productChicken);
+                }
+            }
+            return listProductOfOneStore;
+        }
+
+        public List<ProductChicken> searchBoxHomeAdmin(String searchBox, int maStore) {
+            String lowerCaseKeyword = searchBox.toLowerCase();
+
+            // Dùng stream để kết hợp cả 2 điều kiện
+            return tableProduct.stream()
+                    .filter(product -> product.getMaStore() == maStore) // Lọc theo mã cửa hàng
+                    .filter(product -> product.getNameProduct().toLowerCase().contains(lowerCaseKeyword)) // Lọc theo từ khóa
+                    .collect(Collectors.toList());
+        }
+
+        //lấy toàn bộ combo cua 1 cửa hàng
     }
 

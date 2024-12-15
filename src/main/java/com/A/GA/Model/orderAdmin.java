@@ -1,22 +1,25 @@
 package com.A.GA.Model;
 
+import com.A.GA.Repository.OrderRepository;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class orderAdmin {
-    private static int maOrderCount = 0; // tự động tăng id
+    private static int maOrderCount = OrderRepository.tableOrderAdmin.size(); // tự động tăng id
     private int maOrder;
     private int idUser;
     private String nameCustomer;
     private double sumMoney;
     private LocalDateTime time;
-    private AddressCustomer InforDetailed; // thông tin chi tiết mà khách hàng muốn
+    private AddressCustomer InforDetailed; // thông tin chi tiết của khách hàng
     private List<ProductChicken> products1; // link nhiều sản phẩm
     private  List<ComBo> products2 ;// Link nhiều sản phẩm combo
     private String status; // đây phải là 1 trường lựa trọn gồm các option ( đang chuẩn bị, đã giao cho ship)
+    private int maStore;
 
-    public orderAdmin(int idUser, String nameCustomer, double sumMoney, LocalDateTime time, AddressCustomer inforDetailed, List<ProductChicken> products1, List<ComBo> products2, String status) {
-        this.maOrder = maOrderCount;
+    public orderAdmin(int idUser, String nameCustomer, double sumMoney, LocalDateTime time, AddressCustomer inforDetailed, List<ProductChicken> products1, List<ComBo> products2, String status, int maStore) {
+        this.maOrder = maOrderCount++;
         this.idUser=idUser;
         this.nameCustomer = nameCustomer;
         this.sumMoney = sumMoney;
@@ -25,6 +28,15 @@ public class orderAdmin {
         this.products1 = products1;
         this.products2 = products2;
         this.status = status;
+        this.maStore = maStore;
+    }
+
+    public int getMaStore() {
+        return maStore;
+    }
+
+    public void setMaStore(int maStore) {
+        this.maStore = maStore;
     }
 
     public orderAdmin() {

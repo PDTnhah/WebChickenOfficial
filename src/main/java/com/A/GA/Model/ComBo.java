@@ -4,13 +4,13 @@ import com.A.GA.Repository.ComBoRepository;
 
 public class ComBo {
     private static int maComBoCount= ComBoRepository.tableComBo.size(); // tự động tăng id
-    private int idUser;
     private int maComBo;
     private String nameComBo;
     private int price;
     private String image;
     private String describe;
     private String category;
+    private int maStore;
 
     public ComBo(String nameComBo, int price, String image, String describe, String category) {
         this.maComBo = maComBoCount++;
@@ -19,6 +19,32 @@ public class ComBo {
         this.image = image;
         this.describe = describe;
         this.category = category;
+    }
+
+    public ComBo( String nameComBo, int price, String image, String describe, String category, int maStore) {
+        this.maComBo = maComBoCount++;
+        this.nameComBo = nameComBo;
+        this.price = price;
+        this.image = image;
+        this.describe = describe;
+        this.category = category;
+        this.maStore = maStore;
+    }
+
+    public static int getMaComBoCount() {
+        return maComBoCount;
+    }
+
+    public static void setMaComBoCount(int maComBoCount) {
+        ComBo.maComBoCount = maComBoCount;
+    }
+
+    public int getMaStore() {
+        return maStore;
+    }
+
+    public void setMaStore(int maStore) {
+        this.maStore = maStore;
     }
 
     public int getMaComBo() {

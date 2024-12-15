@@ -68,4 +68,11 @@ public class ProductService {
     }
 
 
+    public List<ProductChicken> getALLProductAdmin(int maStore) {
+        return productRepository.getALLProductAdmin(maStore);
+    }
+
+    public List<ProductChicken> searchBoxHomeAdmin(String searchBox, int maStore) {
+        return productRepository.searchBoxHomeAdmin(searchBox,maStore);
+    }
 }
