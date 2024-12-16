@@ -5,6 +5,7 @@ import com.A.GA.Model.ComBo;
 import com.A.GA.Model.ProductChicken;
 import com.A.GA.Model.orderAdmin;
 import jakarta.servlet.http.PushBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -13,23 +14,23 @@ import java.util.List;
 
 @Repository
 public class OrderRepository {
-    public static int idOfCustomer=0;
+    public static int idOfCustomer=1;
     public static int idOrder = 0;
     public static List<orderAdmin> tableOrderAdmin = new ArrayList<>();
     public OrderRepository() {
         // tạo sẵn các sản phẩm
-          tableOrderAdmin.add( new orderAdmin(2, "trần thanh hằng", 1000,LocalDateTime.now(), getByIdCustomer(1),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
-          tableOrderAdmin.add( new orderAdmin(1, "trần thanh hằng", 1000,LocalDateTime.now(), getByIdCustomer(1),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
-          tableOrderAdmin.add( new orderAdmin(3, "trần thanh hằng", 1000,LocalDateTime.now(), getByIdCustomer(1),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
-          tableOrderAdmin.add( new orderAdmin(4, "trần thanh hằng", 1000,LocalDateTime.now(), getByIdCustomer(1),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
-          tableOrderAdmin.add( new orderAdmin(5, "trần thanh hằng", 1000,LocalDateTime.now(), getByIdCustomer(1),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
-          tableOrderAdmin.add( new orderAdmin(6, "trần thanh hằng", 1000,LocalDateTime.now(), getByIdCustomer(1),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
-          tableOrderAdmin.add( new orderAdmin(7, "trần thanh hằng", 1000,LocalDateTime.now(), getByIdCustomer(1),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
-          tableOrderAdmin.add( new orderAdmin(8, "trần thanh hằng", 1000,LocalDateTime.now(), getByIdCustomer(1),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
-          tableOrderAdmin.add( new orderAdmin(9, "trần thanh hằng", 1000,LocalDateTime.now(), getByIdCustomer(1),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
-          tableOrderAdmin.add( new orderAdmin(10, "trần thanh hằng", 1000,LocalDateTime.now(), getByIdCustomer(1),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
-          tableOrderAdmin.add( new orderAdmin(11, "trần thanh hằng", 1000,LocalDateTime.now(), getByIdCustomer(1),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
-          tableOrderAdmin.add( new orderAdmin(12, "trần thanh hằng", 1000,LocalDateTime.now(), getByIdCustomer(1),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
+          tableOrderAdmin.add( new orderAdmin(1, "trần thanh hằng", 1000,LocalDateTime.now(), getByIdCustomer(1), ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
+          tableOrderAdmin.add( new orderAdmin(0, "trần thanh hằng", 1000,LocalDateTime.now(), getByIdCustomer(1),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
+          tableOrderAdmin.add( new orderAdmin(1, "trần thanh hằng", 1000,LocalDateTime.now(),  getByIdCustomer(1),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
+          tableOrderAdmin.add( new orderAdmin(0, "trần thanh hằng", 1000,LocalDateTime.now(),  getByIdCustomer(1),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
+          tableOrderAdmin.add( new orderAdmin(2, "trần thanh hằng", 1000,LocalDateTime.now(),  getByIdCustomer(1),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
+//          tableOrderAdmin.add( new orderAdmin(5, "trần thanh hằng", 1000,LocalDateTime.now(), CustomerRepository.tableCuntomer.get(5),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
+//          tableOrderAdmin.add( new orderAdmin(6, "trần thanh hằng", 1000,LocalDateTime.now(), CustomerRepository.tableCuntomer.get(6),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
+//          tableOrderAdmin.add( new orderAdmin(7, "trần thanh hằng", 1000,LocalDateTime.now(), CustomerRepository.tableCuntomer.get(7),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
+//          tableOrderAdmin.add( new orderAdmin(8, "trần thanh hằng", 1000,LocalDateTime.now(), CustomerRepository.tableCuntomer.get(8),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
+//          tableOrderAdmin.add( new orderAdmin(9, "trần thanh hằng", 1000,LocalDateTime.now(), CustomerRepository.tableCuntomer.get(9),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
+//          tableOrderAdmin.add( new orderAdmin(10, "trần thanh hằng", 1000,LocalDateTime.now(), CustomerRepository.tableCuntomer.get(10),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
+//          tableOrderAdmin.add( new orderAdmin(12, "trần thanh hằng", 1000,LocalDateTime.now(), CustomerRepository.tableCuntomer.get(0),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",1));
 //          tableOrderAdmin.add( new orderAdmin(1, "trần thanh hằng", 3000,LocalDateTime.now(), getByIdCustomer(1),ProductRepository.tableOrder, ProductRepository.tableOrderComBo,"prepare",2));
     }
     public void addCustomerAdmon(int id,String hoten, String phoneNumber, String address, String transport, String paymentMethod, String note) {

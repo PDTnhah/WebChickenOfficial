@@ -42,8 +42,12 @@ public class orderController {
         int idUser = (int)session.getAttribute("idUser");
         orderService.addCustomerAdmin(idUser,hoten,phoneNumber,address,transport,paymentMethod,note);
         AddressCustomer addressCustomer=  orderService.getByIdCustomer(idUser);
+
 //        int maStore = storeService.getMaStore(idUserCurrent);
         int maStore = storeService.getMaStore(UserController.IDPRODUCT);
+//        int maStore = UserController.IDPRODUCT;
+//        int maStore = productRepository.getMaStoreByIdProduct(UserController.IDPRODUCT);
+
         // sao lưu tất cả giá trị sang bảng mới mà k phải sao lưu tham chiều
         List<ProductChicken> productTamThoi = new ArrayList<>(ProductRepository.tableOrder);
         List<ComBo> comBoTamThoi = new ArrayList<>(ProductRepository.tableOrderComBo);

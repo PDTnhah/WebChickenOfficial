@@ -6,7 +6,7 @@ import com.A.GA.Repository.OrderRepository;
 public class AddressCustomer {
     private static int maIdCount = CustomerRepository.tableCuntomer.size(); // tự động tăng id
     private int id;
-    private int maStore;
+//    private int maStore;
     private String Name;
     private String phoneNumber;
     private String address;

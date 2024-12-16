@@ -224,6 +224,15 @@
                     .collect(Collectors.toList());
         }
 
+        public int getMaStoreByIdProduct(int idproduct) {
+            for (ProductChicken productChicken: tableProduct){
+                if (productChicken.getId() == idproduct){
+                    return productChicken.getMaStore();
+                }
+            }
+            return 1;
+        }
+
         //lấy toàn bộ combo cua 1 cửa hàng
     }
 

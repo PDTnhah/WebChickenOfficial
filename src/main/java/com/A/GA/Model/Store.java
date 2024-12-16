@@ -16,7 +16,7 @@ public class Store {
         this.nameStore = nameStore;
     }
 
-    public int getMaStore() {
+    public int  getMaStore() {
         return maStore;
     }
 

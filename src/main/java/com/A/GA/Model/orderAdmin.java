@@ -12,7 +12,7 @@ public class orderAdmin {
     private String nameCustomer;
     private double sumMoney;
     private LocalDateTime time;
-    private AddressCustomer InforDetailed; // thông tin chi tiết của khách hàng
+    private AddressCustomer inforDetailed; // thông tin chi tiết của khách hàng
     private List<ProductChicken> products1; // link nhiều sản phẩm
     private  List<ComBo> products2 ;// Link nhiều sản phẩm combo
     private String status; // đây phải là 1 trường lựa trọn gồm các option ( đang chuẩn bị, đã giao cho ship)
@@ -24,7 +24,7 @@ public class orderAdmin {
         this.nameCustomer = nameCustomer;
         this.sumMoney = sumMoney;
         this.time = time;
-        InforDetailed = inforDetailed;
+        this.inforDetailed = inforDetailed;
         this.products1 = products1;
         this.products2 = products2;
         this.status = status;
@@ -95,11 +95,11 @@ public class orderAdmin {
     }
 
     public AddressCustomer getInforDetailed() {
-        return InforDetailed;
+        return inforDetailed;
     }
 
     public void setInforDetailed(AddressCustomer inforDetailed) {
-        InforDetailed = inforDetailed;
+        inforDetailed = inforDetailed;
     }
 
     public List<ProductChicken> getProducts1() {

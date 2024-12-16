@@ -150,18 +150,23 @@
         <td th:text="${order.getTime()}"></td>
         <td>
             <button type="button" class="btn" onclick="showCustomerDetail(
-                '[[${order.getInforDetailed().getName()}]]',
-                '[[${order.getInforDetailed().getPhoneNumber()}]]',
-                '[[${order.getInforDetailed().getAddress()}]]',
-                '[[${order.getInforDetailed().getTransport()}]]',
-                '[[${order.getInforDetailed().getPaymentMethod()}]]',
-                '[[${order.getInforDetailed().getNote()}]]'
-            )">Thông tin chi tiết</button>
+            '${order.getInforDetailed().getName()}',
+            '${order.getInforDetailed().getPhoneNumber()}',
+            '${order.getInforDetailed().getAddress()}',
+            '${order.getInforDetailed().getTransport()}',
+            '${order.getInforDetailed().getPaymentMethod()}',
+            '${order.getInforDetailed().getNote()}'
+        )">Thông tin chi tiết</button>
         </td>
 <!--        <td>-->
 <!--            <button type="button" class="btn" onclick="showCustomerDetail()">Thông tin chi tiết</button>-->
 <!--        </td>-->
-
+<!--        <td>-->
+<!--            <ul>-->
+<!--                <li th:text = "${order.getInforDetailed().getName()}"></li>-->
+<!--                <li th:text = "${order.getInforDetailed().getPhoneNumber()"></li>-->
+<!--            </ul>-->
+<!--        </td>-->
         <td>
             <ul>
                 <li th:each="product1 : ${order.getProducts1}" th:text="${product1.getNameProduct()}"></li>
@@ -193,7 +198,7 @@
 </div>
 
 <script>
-    function showCustomerDetail(name, phone, address, transport, paymentMethod, note) {
+    function showCustomerDetail(name,phone,address,transport,paymentMethod,note) {
         document.getElementById("customerName").innerText = name;
         document.getElementById("customerPhone").innerText = phone;
         document.getElementById("customerAddress").innerText = address;
